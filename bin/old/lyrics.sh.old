@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# You just need a folder called Lyrics somewhere, which contains (even in subdirectories) files with extension .txt or .jp (locate is used)
+
+open_at_line=yes
+
+song_fullpath=$(qdbus py.mpris /py/mpris py.mpris.GetFullpath)
+[ "$song_fullpath" ] || exit 1
+tmp=${song_fullpath##*/} song_filename_no_ext=${tmp%.*}
+song_title= song_artist=
+if [ -f "$song_fullpath" ]; then
+    #song_title=$(exiftool -b -title "$song_fullpath")
+    #song_artist=$(exiftool -b -artist "$song_fullpath")
+    song_title=$(ffprobe -print_format default=noprint_wrappers=1:nokey=1 -loglevel error -show_entries format_tags=title:stream_tags=title "$song_fullpath" | head -n1)
+    song_artist=$(ffprobe -print_format default=noprint_wrappers=1:nokey=1 -loglevel error -show_entries format_tags=artist:stream_tags=artist "$song_fullpath" | head -n1)
+fi
+
+#find=$(find -H ~/Downloads/Phone/Lyrics/ -xtype f | LC_ALL=C sort -V) # locate is far slower
+#find=$(grep -Fv .kate-swp <<< "$find")
+find=$(locate '*/Lyrics*.jp')$'\n'$(locate '*/Lyrics*.txt')
+find=$(LC_ALL=C sort -V <<< "$find")
+
+IFS=$'\n'
+
+end() {
+    match=$(grep -Fim1 -- "$1" <<< "$find") || return
+    for lyrics_file in $match; do
+        [ -f "$lyrics_file" ] || continue
+        
+        if [ "$open_at_line" ]; then
+            position=$(qdbus py.mpris /py/mpris py.mpris.GetProperty Position)
+            length=$(qdbus py.mpris /py/mpris py.mpris.GetMetadataField mpris:length)
+            if [[ "$position" =~ ^[0-9]+$ ]] && [[ "$length" =~ ^[0-9]+$ ]] && ((length > 0)); then
+                number_of_lines_in_file=$(grep -c -- '' "$lyrics_file")
+                line_to_open_at=$((number_of_lines_in_file * position / length))
+                ((line_to_open_at < 1)) && line_to_open_at=1
+                ((line_to_open_at > number_of_lines_in_file)) && line_to_open_at=$number_of_lines_in_file
+                kate --line "$line_to_open_at" -- "$lyrics_file" & disown
+                exit 0
+            fi
+        fi
+        
+        kate -- "$lyrics_file" & disown
+        exit 0
+    done
+}
+
+if [ "$song_artist" -a "$song_title" ]; then
+    end "$song_artist - $song_title"
+    [[ "$song_title" =~ ' (' ]] && end "$song_artist - ${song_title%' ('*}"
+fi
+end "$song_filename_no_ext"
+if [ "$song_title" ]; then
+    end "$song_title"
+    [[ "$song_title" =~ ' (' ]] && end "${song_title%' ('*}"
+fi
+if [[ "$song_filename_no_ext" =~ ' - ' ]]; then
+    song_title_from_filename=${song_filename_no_ext#*' - '}
+    end "$song_title_from_filename"
+    [[ "$song_title_from_filename" =~ ' (' ]] && end "${song_title_from_filename%' ('*}"
+fi
+
+notify-send Lyrics "<b>No lyrics file found for:</b> $song_filename_no_ext"

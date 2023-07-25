@@ -1,0 +1,60 @@
+#!/bin/bash
+
+lyrics_save_directory=~/D/Lyrics_temp
+
+# Copié de lyrics.sh
+song_fullpath=$(qdbus py.mpris /py/mpris py.mpris.GetFullpath)
+[ "$song_fullpath" ] || exit 1
+tmp=${song_fullpath##*/} song_filename_no_ext=${tmp%.*}
+song_title= song_artist=
+if [ -f "$song_fullpath" ]; then
+    #song_title=$(exiftool -b -title "$song_fullpath")
+    #song_artist=$(exiftool -b -artist "$song_fullpath")
+    song_title=$(ffprobe -print_format default=noprint_wrappers=1:nokey=1 -loglevel error -show_entries format_tags=title:stream_tags=title "$song_fullpath" | head -n1)
+    song_artist=$(ffprobe -print_format default=noprint_wrappers=1:nokey=1 -loglevel error -show_entries format_tags=artist:stream_tags=artist "$song_fullpath" | head -n1)
+fi
+# Fin copié de lyrics.sh
+
+array=()
+
+end() { array+=("$1" "$1" off); }
+
+# Copié de lyrics.sh 2
+if [ "$song_artist" -a "$song_title" ]; then
+    end "$song_artist - $song_title"
+    [[ "$song_title" =~ ' (' ]] && end "$song_artist - ${song_title%' ('*}"
+fi
+end "$song_filename_no_ext"
+if [ "$song_title" ]; then
+    end "$song_title"
+    [[ "$song_title" =~ ' (' ]] && end "${song_title%' ('*}"
+fi
+if [[ "$song_filename_no_ext" =~ ' - ' ]]; then
+    song_title_from_filename=${song_filename_no_ext#*' - '}
+    end "$song_title_from_filename"
+    [[ "$song_title_from_filename" =~ ' (' ]] && end "${song_title_from_filename%' ('*}"
+fi
+# Fin copié de lyrics.sh 2
+
+choice=$(kdialog --title "${0##*/}" --radiolist "$song_fullpath" -- "${array[@]}")
+[ "$choice" ] || exit 1
+
+query_terms=$(kdialog --title "${0##*/}" --inputbox "$(printf ' %.s' {1..50})$choice$(printf ' %.s' {1..50})" "$choice")
+[ "$query_terms" ] || exit 1
+
+lyrics=$(clyrics " $query_terms" 2>&1) # A space at the beginning so that the argument can never be interpreted as an option
+
+if [ "$lyrics" ]; then
+    filename_to_write=${query_terms//'/'/'／'}
+    [ "$(grep -Pcm5 '\p{Han}' <<< "$lyrics")" == 5 ] && filename_to_write=$filename_to_write.jp || filename_to_write=$filename_to_write.txt
+    fullpath_to_write=$lyrics_save_directory/$filename_to_write
+    
+    if mkdir -p -- "$lyrics_save_directory" && [ ! -e "$fullpath_to_write" ]; then
+        printf %s "$lyrics" >> "$fullpath_to_write"
+        kate -- "$fullpath_to_write" & disown
+    else
+        printf %s "$lyrics" | kate -i & disown
+    fi
+else
+    notify-send -i download -- "${0##*/}" "No lyrics found on Google for the query:"$'\n'"$query_terms"
+fi

@@ -1,0 +1,161 @@
+# Put modifiers in this order: Control+Shift+Alt+Mod4+Mod5
+# The order of modifiers in KDE programs is Meta+Ctrl+Alt+Shift (Alt Gr cannot be used as a modifier)
+
+"bd=$(dirname -- "$(realpath ~/bin/linux-setup.sh)"); kate -- ~/D/linux-setup-addon/xbindkeysrc.txt "$bd"/../xbindkeysrc.txt"
+Mod4 + b
+
+"killall -HUP xbindkeys"
+Alt+Mod4 + b
+
+"killall -9 plasmashell; sleep .5; plasmashell --replace"
+Control+Alt+Mod4 + p
+
+"killall -9 kwin kwin_x11; sleep .5; kwin_x11 --replace"
+Control+Alt+Mod4 + w
+
+"killall -9 kglobalaccel5; sleep .5; kglobalaccel5"
+Control+Alt+Mod4 + g
+
+"sed -Ez 's|.*\[Containments]\[1]\[Wallpaper]\[org\.kde\.image]\[General]\nImage=(file://)?([^\n]+).*|\2|' ~/.config/plasma-org.kde.plasma.desktop-appletsrc | sed 's|^|file://|' | xsel -b; notify-send -i edit-copy 'Copied wallpaper URL to clipboard' "$(xsel -o -b)""
+Shift+Mod4 + d
+
+"pactl set-sink-volume @DEFAULT_SINK@ -5%"
+Alt+Mod4 + a
+
+"pactl set-sink-volume @DEFAULT_SINK@ +5%"
+Alt+Mod4 + s
+
+"xrandr-brightness.sh down"
+Shift+Alt + a
+
+"xrandr-brightness.sh up"
+Shift+Alt + s
+
+
+"windows-cycle.sh 'Mozilla Firefox Private Browsing' 'firefox --private-window & while ! [[ $(wmctrl -l) =~ "Mozilla Firefox Private Browsing" ]]; do sleep .1; done; sleep .5; wmctrl -Fa "Mozilla Firefox Private Browsing"'"
+Shift+Alt + e
+
+
+"qdbus py.mpris /py/mpris py.mpris.SeekToPreviousBookmark"
+Control+Shift+Mod4 + a
+
+"qdbus py.mpris /py/mpris py.mpris.SeekToNextBookmark"
+Control+Shift+Mod4 + s
+
+"qdbus py.mpris /py/mpris py.mpris.ShowNotification"
+Control+Shift+Mod4 + d
+
+"qdbus py.mpris /py/mpris py.mpris.AddBookmarkHere"
+Control+Shift+Mod4 + q
+
+"qdbus py.mpris /py/mpris py.mpris.RemoveBookmark"
+Control+Shift+Mod4 + w
+
+"lyrics.sh"
+Control+Shift+Mod4 + z
+
+"clyrics.sh"
+Control+Shift+Mod4 + x
+
+"bash -c 'fj_id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 < 100 { print \$1 }"); id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 >= 100 { print \$1 }"); ids="$id $fj_id"; cwn=$(xdotool getactivewindow getwindowname); if [[ $cwn == "Tagaini Jisho" || $cwn == "" ]]; then for i in $ids; do xdotool windowminimize $i; done; else for i in $ids; do wmctrl -ia $i; done; fi; pidof tagainijisho || { tagainijisho & disown; }'"
+Shift+Mod4 + 1
+
+# =====
+
+#"windows-cycle.sh ''"
+#Shift+Alt + 1
+
+#"windows-cycle.sh ''"
+#Shift+Alt + 2
+
+#"windows-cycle.sh 'Notes - '"
+#Shift+Alt + 3
+
+#"windows-cycle.sh ''"
+#Shift+Alt + 4
+
+"windows-cycle.sh '\[Search]'"
+Shift+Alt + q
+
+#"windows-cycle.sh 'Wiktionary - '"
+#Shift+Alt + w
+
+"windows-cycle.sh '\[News]'"
+Shift+Alt + r
+
+#"windows-cycle.sh 'Misc - '"
+#Shift+Alt + a
+
+#"windows-cycle.sh '   Social - '"
+#Shift+Mod4 + s
+
+"windows-cycle.sh '\[Uni général]'"
+Shift+Alt + d
+
+#"windows-cycle.sh ''"
+#Shift+Alt + f
+
+"windows-cycle.sh '\[Misc]'"
+Shift+Alt + z
+
+"windows-cycle.sh '\[Social]'"
+Shift+Alt + x
+
+"windows-cycle.sh '\[Music]'"
+Shift+Alt + c
+
+"windows-cycle.sh '\[Videos]'"
+Shift+Alt + v
+
+#"windows-cycle.sh 'Université - '"
+#Shift+Alt + u
+
+# =====
+
+#"windows-cycle.sh ''"
+#Control+Alt + 1
+
+#"windows-cycle.sh ''"
+#Control+Alt + 2
+
+#"windows-cycle.sh ''"
+#Control+Alt + 3
+
+#"windows-cycle.sh ''"
+#Control+Alt + 4
+
+#"windows-cycle.sh ''"
+#Control+Alt + q
+
+#"windows-cycle.sh ''"
+#Control+Alt + w
+
+#"windows-cycle.sh ''"
+#Control+Alt + e
+
+#"windows-cycle.sh ''"
+#Control+Alt + r
+
+#"windows-cycle.sh '\[Misc]'"
+#Control+Alt + a
+
+#"windows-cycle.sh '\[Social]'"
+#Control+Alt + s
+
+#"windows-cycle.sh ''"
+#Control+Alt + d
+
+#"windows-cycle.sh ''"
+#Control+Alt + f
+
+#"windows-cycle.sh ''"
+#Control+Alt + z
+
+#"windows-cycle.sh ''"
+#Control+Alt + x
+
+#"windows-cycle.sh ''"
+#Control+Alt + c
+
+#"windows-cycle.sh ''"
+#Control+Alt + v

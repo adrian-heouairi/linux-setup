@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Japanese" version="1" kateversion="5.0" section="Other" extensions="*.jp" mimetype="text/japanese" author="?" license="?" priority="1">
+    <highlighting>
+        <contexts>
+            <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+                <RegExpr attribute="Letters" String="[A-Za-zＡ-Ｚａ-ｚÀ-ſ]+"/>
+                <RegExpr attribute="Hiragana" String="[ぁ-ゖ]+ー?"/>
+                <RegExpr attribute="Katakana" String="[ァ-ヶ]+ー?"/>
+            </context>
+        </contexts>
+        <itemDatas>
+            <itemData name="Normal Text" defStyleNum="dsNormal"/>
+            <itemData name="Letters" defStyleNum="dsInformation"/>
+            <itemData name="Hiragana" defStyleNum="dsChar"/>
+            <itemData name="Katakana" defStyleNum="dsString"/>
+        </itemDatas>
+    </highlighting>
+</language>

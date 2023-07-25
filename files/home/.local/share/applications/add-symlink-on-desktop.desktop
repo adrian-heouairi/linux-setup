@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Add symbolic link on desktop
+#GenericName=Equalizer
+#Comment=PulseAudio equalizer
+Icon=link
+#Keywords=audio;player;music;
+#Categories=AudioVideo;Audio;Player;
+Exec=sh -c 'ln -s -- "$1" ~/Desktop/' sh %f
+#TryExec=qpaeq
+#StartupNotify=false
+#Terminal=false

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=qpaeq
+GenericName=Equalizer
+Comment=PulseAudio equalizer
+Icon=equalizer
+Keywords=audio;player;music;
+Categories=AudioVideo;Audio;Player;
+Exec=qpaeq
+#TryExec=qpaeq
+StartupNotify=false
+Terminal=false

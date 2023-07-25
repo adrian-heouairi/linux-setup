@@ -1,0 +1,31 @@
+{
+    "type": "script",
+    "description": "Search ctrl+c on weblio.jp",
+    "store": {},
+    "modes": [
+        3
+    ],
+    "usageCount": 49,
+    "prompt": false,
+    "omitTrigger": false,
+    "showInTrayMenu": false,
+    "abbreviation": {
+        "abbreviations": [],
+        "backspace": true,
+        "ignoreCase": false,
+        "immediate": false,
+        "triggerInside": false,
+        "wordChars": "[\\w]"
+    },
+    "hotkey": {
+        "modifiers": [
+            "<alt>",
+            "<shift>"
+        ],
+        "hotKey": "2"
+    },
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    }
+}

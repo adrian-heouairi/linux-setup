@@ -1,0 +1,5 @@
+#!/bin/sh
+
+d=$(realpath -- "$0") d=$(dirname -- "$d") d=$(dirname -- "$d")
+
+"$d"/Programs/clyrics/clyrics "$@"
