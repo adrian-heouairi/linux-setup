@@ -10,6 +10,8 @@ tmp_file=
 
 trap 'rm -f -- "$tmp_file"; exit 0' SIGINT
 
+#trap 'echo "Current file: $tmp_file"' SIGQUIT
+
 db=~/Documents/reencode-dir-videos.txt
 
 IFS=$'\n'
@@ -22,11 +24,13 @@ for ext in mkv mp4; do
         
         grep -Fx -- "$basename" "$db" &>/dev/null && continue
     
-        if (( $(printf %s "$basename" | wc --bytes) > 250 )); then
-            tmp_file=${i%?????}.$ext
+        if (( $(printf %s "$basename" | wc --bytes) > 240 )); then
+            tmp_file=${i%???????????????}TMP.$ext
         else
-            tmp_file=$i.$ext
+            tmp_file=${i}TMP.$ext
         fi
+    
+        echo "Current file: $i"
     
         if ffmpeg -y -i "$i" -map 0 -codec copy -vcodec libx265 -acodec libopus -- "$tmp_file" &>/dev/null; then
             if (( $(find "$tmp_file" -printf %s) < $(find "$i" -printf %s) )); then
