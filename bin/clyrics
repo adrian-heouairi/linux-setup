@@ -1,5 +1,6 @@
 #!/bin/sh
 
-d=$(realpath -- "$0") d=$(dirname -- "$d") d=$(dirname -- "$d")
+#d=$(realpath -- "$0") d=$(dirname -- "$d") d=$(dirname -- "$d")
+#"$d"/Programs/clyrics/clyrics "$@"
 
-"$d"/Programs/clyrics/clyrics "$@"
+~/D/linux-setup-programs/clyrics/clyrics "$@"

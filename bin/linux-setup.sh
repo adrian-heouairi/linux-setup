@@ -10,6 +10,14 @@ if ! [ "$1" ]; then
     sudo apt update
     sudo apt install $(cat "$base"/install-apt.txt) $(cat "$addon"/install-apt.txt 2>/dev/null)
     sudo snap install $(cat "$base"/install-snap.txt) $(cat "$addon"/install-snap.txt 2>/dev/null)
+    if [ -e ~/D/linux-setup-programs/clyrics ]; then
+        cd ~/D/linux-setup-programs/clyrics
+        git pull
+    else
+        mkdir -p ~/D/linux-setup-programs
+        cd ~/D/linux-setup-programs
+        git clone https://github.com/trizen/clyrics
+    fi
     echo
 fi
 

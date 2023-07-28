@@ -34,9 +34,9 @@ query_terms=$(kdialog --title "${0##*/}" --inputbox "$(printf ' %.s' {1..50})$ch
 
 if [[ $query_terms =~ ^'jp ' ]]; then
     query_terms=${query_terms#'jp '}
-    lyrics=$(clyrics -P "$(linux-setup-get-dir.sh)/Programs/clyrics/plugins-jp" -- "$query_terms" 2>&1)
+    lyrics=$(clyrics -P "$(linux-setup-get-dir.sh)/clyrics-plugins-jp" -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 else
-    lyrics=$(clyrics -- "$query_terms" 2>&1)
+    lyrics=$(clyrics -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 fi
 
 if [ "$lyrics" ]; then
