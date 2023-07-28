@@ -8,7 +8,7 @@ if system.exec_command('xprop -id "$(xdotool getactivewindow)" WM_CLASS || true'
 else:
     keyboard.send_keys("<ctrl>+c")
 
-time.sleep(.2)
+time.sleep(.5)
 
 clipboard = system.exec_command('xsel -o -b')
 
