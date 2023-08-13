@@ -7,11 +7,11 @@ lyrics_dir=~/D/Lyrics
 song_fullpath=$(qdbus py.mpris /py/mpris py.mpris.GetFullpath)
 [ -f "$song_fullpath" ] || exit 1
 
-song_filename=${song_fullpath##*/} song_filename_no_ext=${song_filename%.*}
+song_filename=${song_fullpath##*/} # song_filename_no_ext=${song_filename%.*}
 
 find=$(find "$lyrics_dir"/ -xtype f)
 
-lyrics_file=$(grep -m1 -F -e /"$song_filename_no_ext".txt -e /"$song_filename_no_ext".jp <<< "$find")
+lyrics_file=$(grep -m1 -F -e /"$song_filename".txt -e /"$song_filename".jp <<< "$find")
 
 if [ -f "$lyrics_file" ]; then
     position=$(qdbus py.mpris /py/mpris py.mpris.GetProperty Position)

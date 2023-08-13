@@ -7,6 +7,9 @@ Mod4 + b
 "killall -HUP xbindkeys"
 Alt+Mod4 + b
 
+"wmctrl -Fa 'System Monitor' || gnome-system-monitor"
+Control+Shift + Escape
+
 "killall -9 plasmashell; sleep .5; plasmashell --replace"
 Control+Alt+Mod4 + p
 

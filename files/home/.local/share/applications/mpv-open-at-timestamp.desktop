@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Open at timestamp with mpv
-GenericName=Open at timestamp
+Name=Open source with mpv
+#GenericName=Open at timestamp
 #Comment=
 Icon=mpv
 #Keywords=audio;player;music;
 #Categories=AudioVideo;Audio;Player;
-Exec=mpv-open-at-timestamp.sh %f
+Exec=open-source-with-mpv.sh %f
 #TryExec=
 #StartupNotify=false
 #Terminal=false

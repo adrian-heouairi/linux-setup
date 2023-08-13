@@ -32,7 +32,7 @@ for ext in mkv mp4; do
     
         echo "Current file: $i"
     
-        if ffmpeg -y -i "$i" -map 0 -codec copy -vcodec libx265 -acodec libopus -- "$tmp_file" &>/dev/null; then
+        if ffmpeg -y -i "$i" -map 0 -codec copy -vcodec libx265 -acodec libopus -- "$tmp_file"; then
             if (( $(find "$tmp_file" -printf %s) < $(find "$i" -printf %s) )); then
                 mv -f -- "$tmp_file" "$i"
             else

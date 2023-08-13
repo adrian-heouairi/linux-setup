@@ -4,4 +4,6 @@
 
 [[ $2 =~ '.'mp3$ ]] || exit 1
 
-ffmpeg -y -i "$1" -vcodec copy -- "$2"TMP.mp3 && mv -f -- "$2"TMP.mp3 "$2"
+tmp=$(dirname -- "$2")/convert-to-mp3_$$.mp3
+
+ffmpeg -y -i "$1" -vcodec copy -- "$tmp" && mv -f -- "$tmp" "$2" || rm -f -- "$tmp"

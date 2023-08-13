@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A clyrics query looks like this: <arguments> site:lyrics.com OR site:lyrics2.com OR ...
+# A clyrics query on Google looks like this: <arguments> site:lyrics.com OR site:lyrics2.com OR ...
 
 lyrics_save_directory=~/D/Lyrics
 
@@ -29,20 +29,21 @@ add_to_array "$song_filename_no_ext"
 choice=$(kdialog --title "${0##*/}" --radiolist "$song_fullpath"$'\n\n'"Choose 'jp ' prefix for Japanese websites" -- "${array[@]}")
 [ "$choice" ] || exit 1
 
-query_terms=$(kdialog --title "${0##*/}" --inputbox "$(printf ' %.s' {1..50})$choice$(printf ' %.s' {1..50})" "$choice")
-[ "$query_terms" ] || exit 1
+text=$(kdialog --title "${0##*/}" --inputbox "$(printf ' %.s' {1..50})$choice$(printf ' %.s' {1..50})" "$choice")
+[ "$text" ] || exit 1
 
-if [[ $query_terms =~ ^'jp ' ]]; then
-    query_terms=${query_terms#'jp '}
+query_terms=${text#'jp '}
+
+if [[ $text =~ ^'jp ' ]]; then
     lyrics=$(clyrics -P "$(linux-setup-get-dir.sh)/clyrics-plugins-jp" -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 else
     lyrics=$(clyrics -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 fi
 
 if [ "$lyrics" ]; then
-    fullpath_to_write=$lyrics_save_directory/$song_filename_no_ext
+    fullpath_to_write=$lyrics_save_directory/$song_filename
 
-    if grep -P '[\p{Han}\p{Hiragana}\p{Katakana}]' <<< "$lyrics"; then
+    if [[ $text =~ ^'jp ' ]] && grep -P '[\p{Han}\p{Hiragana}\p{Katakana}]' <<< "$lyrics"; then
         rm -f -- "$fullpath_to_write".txt
         fullpath_to_write=$fullpath_to_write.jp
     else

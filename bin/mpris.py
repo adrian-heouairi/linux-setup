@@ -102,8 +102,8 @@ def get_bookmark_fullpaths():
         if re.match("^file://", decoded_url):
             bookmark_filename_from_url = re.match(".+/(.+)", decoded_url).group(1)
             # COMMENT THESE TWO LINES TO HAVE FILENAME EXTENSIONS NOT REMOVED
-            match = re.match("(.+)\..{3,4}$", bookmark_filename_from_url)
-            if match: bookmark_filename_from_url = match.group(1)
+            #match = re.match("(.+)\..{3,4}$", bookmark_filename_from_url)
+            #if match: bookmark_filename_from_url = match.group(1)
             # END
         else: bookmark_filename_from_url = decoded_url
         bookmark_filename_from_url = prepare_filename(bookmark_filename_from_url)
