@@ -18,6 +18,12 @@ if ! [ "$1" ]; then
         cd ~/D/linux-setup-programs
         git clone https://github.com/trizen/clyrics
     fi
+    
+    sudo apt remove yt-dlp youtube-dl
+    for i in $(cat "$base"/install-pip.txt) $(cat "$addon"/install-pip.txt 2>/dev/null); do
+        pipx install "$i"
+    done
+    pipx upgrade-all
     echo
 fi
 

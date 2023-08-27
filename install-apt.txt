@@ -1,4 +1,4 @@
-curl imagemagick samba cifs-utils borgbackup ffmpeg yt-dlp wmctrl xdotool xbindkeys xsel firejail libnotify-bin sqlite3 ddcutil qemu-utils git manpages-posix-dev dislocker zram-config mp3gain
+curl imagemagick samba cifs-utils borgbackup ffmpeg wmctrl xdotool xbindkeys xsel firejail libnotify-bin sqlite3 ddcutil qemu-utils git manpages-posix-dev dislocker zram-config mp3gain pipx
 
 eog mpv mpv-mpris audacity gucharmap gimp gnome-calculator gnome-system-monitor autokey-qt audacious gnome-clocks gedit gedit-plugins syncthing d-feet wireshark-qt gparted gsmartcontrol pulseaudio-equalizer libreoffice-l10n-fr ttf-mscorefonts-installer picard kid3 cheese
 
