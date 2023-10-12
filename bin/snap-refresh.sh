@@ -48,15 +48,18 @@ for i in "${snaps_to_refresh[@]}"; do
 done
 sleep .5 # For the last kill -9
 
-if pkexec snap refresh || sudo snap refresh; then
-    still_not_refreshed=$(snap refresh --list 2>/dev/null)
-    if [ "$still_not_refreshed" ]; then
-        notify "snap refresh was run, but the following snaps were not refreshed:\n$still_not_refreshed"
-    else
-        notify 'All snaps have been refreshed successfully'
-    fi
+#if pkexec snap refresh || sudo snap refresh; then
+
+konsole --separate -e bash -c 'echo snap refresh; sudo snap refresh'
+still_not_refreshed=$(snap refresh --list 2>/dev/null)
+if [ "$still_not_refreshed" ]; then
+    notify "snap refresh was run, but the following snaps were not refreshed:\n$still_not_refreshed"
 else
-    notify "Couldn't run snap refresh command"
+    notify 'All snaps have been refreshed successfully'
 fi
+
+#else
+#    notify "Couldn't run snap refresh command"
+#fi
 
 for i in "${snaps_to_relaunch[@]}"; do "$i" & done

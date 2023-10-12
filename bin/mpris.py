@@ -4,8 +4,8 @@
 
 import os
 
-from pathlib import Path; home = str(Path.home()); mpris_bookmarks_dir = home + "/Documents/mpris-bookmarks"
-if not os.path.exists(mpris_bookmarks_dir): os.mkdir(mpris_bookmarks_dir)
+from pathlib import Path; home = str(Path.home()); mpris_bookmarks_dir = home + "/D/mpris-bookmarks"
+if not os.path.exists(mpris_bookmarks_dir): os.makedirs(mpris_bookmarks_dir, exist_ok=True)
 
 my_service = "py.mpris"
 my_object_name = "/py/mpris"

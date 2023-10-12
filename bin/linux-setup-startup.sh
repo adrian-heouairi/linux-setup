@@ -8,6 +8,8 @@ f() { pidof -x -- "$(basename -- "$1")" || "$@" & }
 
 linux-setup-startup-addon.sh &
 
+f fcitx5
+
 f mpris.py
 
 f xbindkeys

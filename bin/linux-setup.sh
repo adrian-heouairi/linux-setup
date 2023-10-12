@@ -6,6 +6,16 @@ addon=~/D/linux-setup-addon
 
 trap exit SIGINT
 
+mkdir -p -- "$addon"/bin
+if ! [ -e "$addon"/bin/linux-setup-startup-addon.sh ]; then
+    echo $'#!/bin/bash\n\nsleep infinity' >> "$addon"/bin/linux-setup-startup-addon.sh
+    chmod +x -- "$addon"/bin/linux-setup-startup-addon.sh
+fi
+if ! [ -e "$addon"/bin/linux-setup-addon.sh ]; then
+    echo $'#!/bin/bash' >> "$addon"/bin/linux-setup-addon.sh
+    chmod +x -- "$addon"/bin/linux-setup-addon.sh
+fi
+
 if ! [ "$1" ]; then
     sudo apt update
     sudo apt install $(cat "$base"/install-apt.txt) $(cat "$addon"/install-apt.txt 2>/dev/null)
@@ -24,9 +34,21 @@ if ! [ "$1" ]; then
         pipx install "$i"
     done
     pipx upgrade-all
+    
+    current_tagainijisho_ver=$(apt show tagainijisho 2>/dev/null | sed -En 's/^Version: //p')
+    latest_tagainijisho_ver=$(curl -Lso /dev/null -w '%{url_effective}' https://github.com/Gnurou/tagainijisho/releases/latest | sed 's|.*/||')
+    if [ "$current_tagainijisho_ver" != "$latest_tagainijisho_ver" ]; then
+        cd /tmp || exit 1
+        rm -f tagainijisho-"$latest_tagainijisho_ver".deb &>/dev/null
+        wget https://github.com/Gnurou/tagainijisho/releases/download/"$latest_tagainijisho_ver"/tagainijisho-"$latest_tagainijisho_ver".deb &&
+        sudo dpkg -i ./tagainijisho-"$latest_tagainijisho_ver".deb
+    fi
+    
     echo
 fi
 
+[ -e ~/bin -a ! -L ~/bin ] && mv -vf -- ~/bin "$addon"/bin/tilde-bin
+[ -e ~/.local/bin -a ! -L ~/.local/bin ] && mv -vf -- ~/.local/bin "$addon"/bin/tilde-local-bin
 rm -f ~/bin ~/.local/bin 2>/dev/null
 ln -s -- "$addon"/bin ~/.local/bin || exit
 ln -s -- "$base"/bin ~/bin || exit
@@ -34,8 +56,6 @@ PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 cat "$base"/xbindkeysrc.txt <(echo) "$addon"/xbindkeysrc.txt > ~/.xbindkeysrc 2>/dev/null
 killall xbindkeys 2>/dev/null # It is assumed that xbindkeys is in the startup script
-
-# TODO KDE disable Windows key
 
 old_IFS=$IFS
 IFS=$'\n'
@@ -51,18 +71,16 @@ copy-files() {
     [ -d "$1"/files ] || return
     
     echo Copying to system:
-    cd "$1/files"
+    cd -- "$1/files"
     find ! -type d
     echo
     
     [ -d "$1"/files/home ] && rsync -rl "$1"/files/home/ ~/
     
-    if ! [ "$1" ]; then
-        [ -d "$1"/files/slash ] && sudo rsync -rl "$1"/files/slash/ /
-    fi
+    [ "$2" ] || { [ -d "$1"/files/slash ] && sudo rsync -rl "$1"/files/slash/ /; }
 }
-copy-files "$base"
-copy-files "$addon"
+copy-files "$base" "$@"
+copy-files "$addon" "$@"
 
 linux-setup-addon.sh 2>/dev/null
 
@@ -72,6 +90,27 @@ if [ "$HOSTNAME" = agnr ]; then
     rm -rf ~/.config/autokey
     ln -s ../D/Shared-ST-agnr/linux-setup/files/home/.config/autokey ~/.config/autokey
 fi
+
+kwriteconfig5 --file kwinrc --group ModifierOnlyShortcuts --key Meta ""
+qdbus org.kde.KWin /KWin reconfigure
+
+put_kde_keyboard_shortcut() {
+    sed -i "/$3\(,\|\\t\)/d" ~/.config/kglobalshortcutsrc
+    kwriteconfig5 --file kglobalshortcutsrc --group "$1" --key "$2" "$3",,
+}
+
+# See ~/.config/kglobalshortcutsrc
+killall kglobalaccel5
+put_kde_keyboard_shortcut kmix mic_mute Alt+Z
+put_kde_keyboard_shortcut kmix mute Alt+X
+put_kde_keyboard_shortcut plasmashell 'toggle do not disturb' Alt+C
+put_kde_keyboard_shortcut mediacontrol playpausemedia Meta+Z
+put_kde_keyboard_shortcut kmix decrease_volume Meta+A
+put_kde_keyboard_shortcut kmix increase_volume Meta+S
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 4' Meta+Q
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 5' Meta+W
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 6' Meta+E
+kglobalaccel5 & disown
 
 #crontab -l > /tmp/linux-setup-crontab 2>/dev/null
 #if ! grep mpv-backup.sh /tmp/linux-setup-crontab &>/dev/null; then
