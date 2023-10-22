@@ -36,12 +36,28 @@ if ! [ "$1" ]; then
     pipx upgrade-all
     
     current_tagainijisho_ver=$(apt show tagainijisho 2>/dev/null | sed -En 's/^Version: //p')
-    latest_tagainijisho_ver=$(curl -Lso /dev/null -w '%{url_effective}' https://github.com/Gnurou/tagainijisho/releases/latest | sed 's|.*/||')
+    latest_tagainijisho_ver=$(curl --retry 10 -Lso /dev/null -w '%{url_effective}' https://github.com/Gnurou/tagainijisho/releases/latest | sed 's|.*/||')
     if [ "$current_tagainijisho_ver" != "$latest_tagainijisho_ver" ]; then
         cd /tmp || exit 1
         rm -f tagainijisho-"$latest_tagainijisho_ver".deb &>/dev/null
         wget https://github.com/Gnurou/tagainijisho/releases/download/"$latest_tagainijisho_ver"/tagainijisho-"$latest_tagainijisho_ver".deb &&
         sudo dpkg -i ./tagainijisho-"$latest_tagainijisho_ver".deb
+    fi
+    
+    current_anki_ver=$(anki --version | sed -n '$s/.* //p')
+    latest_anki_ver=$(curl --retry 10 -Lso /dev/null -w '%{url_effective}' https://github.com/ankitects/anki/releases/latest | sed 's|.*/||')
+    if [ "$current_anki_ver" != "$latest_anki_ver" ]; then
+        anki_dir=/tmp/anki-"$(uuidgen)"
+        anki_archive=anki-"$latest_anki_ver"-linux-qt6.tar.zst
+        mkdir -p -- "$anki_dir"
+        cd -- "$anki_dir"
+        wget https://github.com/ankitects/anki/releases/download/"$latest_anki_ver"/"$anki_archive" &&
+        tar --use-compress-program=unzstd -xf "$anki_archive" &&
+        cd anki-"$latest_anki_ver"-linux-qt6 && {
+            sudo apt remove anki
+            sudo /usr/local/share/anki/uninstall.sh
+            sudo ./install.sh
+        }
     fi
     
     echo

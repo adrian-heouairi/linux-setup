@@ -7,6 +7,9 @@ Mod4 + b
 "killall -HUP xbindkeys"
 Alt+Mod4 + b
 
+"if [ "$(xdotool getactivewindow getwindowname)" = 'User 1 - Anki' ]; then xdotool getactivewindow windowminimize; else wmctrl -Fa 'User 1 - Anki' || anki & fi"
+Shift+Mod4 + 2
+
 "wmctrl -Fa 'System Monitor' || gnome-system-monitor"
 Control+Shift + Escape
 
