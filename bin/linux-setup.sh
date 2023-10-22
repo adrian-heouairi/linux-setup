@@ -8,7 +8,7 @@ trap exit SIGINT
 
 mkdir -p -- "$addon"/bin
 if ! [ -e "$addon"/bin/linux-setup-startup-addon.sh ]; then
-    echo $'#!/bin/bash\n\nsleep infinity' >> "$addon"/bin/linux-setup-startup-addon.sh
+    echo $'#!/bin/bash\n\n# You must launch a program only if it is not already running\n\nsleep infinity' >> "$addon"/bin/linux-setup-startup-addon.sh
     chmod +x -- "$addon"/bin/linux-setup-startup-addon.sh
 fi
 if ! [ -e "$addon"/bin/linux-setup-addon.sh ]; then
@@ -110,6 +110,9 @@ put_kde_keyboard_shortcut kmix increase_volume Meta+S
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 4' Meta+Q
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 5' Meta+W
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 6' Meta+E
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 7' Meta+Shift+Q
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 8' Meta+Shift+W
+put_kde_keyboard_shortcut plasmashell 'activate task manager entry 9' Meta+Shift+E
 kglobalaccel5 & disown
 
 #crontab -l > /tmp/linux-setup-crontab 2>/dev/null

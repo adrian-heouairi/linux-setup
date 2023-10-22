@@ -80,7 +80,7 @@ Shift+Mod4 + 1
 "windows-cycle.sh '\[Search]'"
 Shift+Alt + q
 
-#"windows-cycle.sh 'Wiktionary - '"
+#"windows-cycle.sh '\[Keep]'"
 #Shift+Alt + w
 
 "windows-cycle.sh '\[News]'"
@@ -92,7 +92,7 @@ Shift+Alt + r
 #"windows-cycle.sh '   Social - '"
 #Shift+Mod4 + s
 
-"windows-cycle.sh '\[Uni général]'"
+"windows-cycle.sh '\[Keep]'"
 Shift+Alt + d
 
 #"windows-cycle.sh ''"

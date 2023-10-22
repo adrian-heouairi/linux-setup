@@ -15,3 +15,5 @@ apt virtualbox: virtualbox-qt virtualbox-guest-additions-iso virtualbox-ext-pack
 apt virtualbox guest: imwheel virtualbox-guest-x11
 
 snap: chromium code intellij-idea-community drawio discord zoom-client
+
+use KWalletManager and set an empty Kwallet-password, thus preventing the need of entering a password to unlock a wallet. Simply do not enter a password on both fields in Change Password... This may however lead to unwanted (read/write) access to the user's wallet. Enabling Prompt when an application accesses a wallet under Access Control is highly recommended to prevent unwanted access to the wallet.
