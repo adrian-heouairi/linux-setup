@@ -35,7 +35,7 @@ text=$(kdialog --title "${0##*/}" --inputbox "$(printf ' %.s' {1..50})$choice$(p
 query_terms=${text#'jp '}
 
 if [[ $text =~ ^'jp ' ]]; then
-    lyrics=$(clyrics -P "$(linux-setup-get-dir.sh)/clyrics-plugins-jp" -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
+    lyrics=$(clyrics -P "$(linux-setup-get-root-path.sh)/clyrics-plugins-jp" -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 else
     lyrics=$(clyrics -- "$query_terms" 2>&1) || notify-send 'clyrics returned non-zero'
 fi
