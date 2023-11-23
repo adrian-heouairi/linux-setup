@@ -1,1 +1,1 @@
-snap-refresh.sh mpv-open.sh mpv-backup.sh
+mpv-open.sh mpv-backup.sh
