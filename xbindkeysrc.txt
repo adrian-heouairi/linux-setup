@@ -7,6 +7,9 @@ Mod4 + b
 "killall -HUP xbindkeys"
 Alt+Mod4 + b
 
+"pacmd list-sources | grep -oP 'index: \d+' | awk '{ print $2 }' | xargs -I{} pactl set-source-mute {} toggle"
+Alt + z
+
 "if [ "$(xdotool getactivewindow getwindowname)" = 'User 1 - Anki' ]; then xdotool getactivewindow windowminimize; else wmctrl -Fa 'User 1 - Anki' || anki & fi"
 Shift+Mod4 + 2
 

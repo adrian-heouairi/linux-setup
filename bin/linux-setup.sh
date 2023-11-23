@@ -123,7 +123,7 @@ put_kde_keyboard_shortcut() {
 
 # See ~/.config/kglobalshortcutsrc
 killall kglobalaccel5
-put_kde_keyboard_shortcut kmix mic_mute Alt+Z 'Microphone Mute'
+#put_kde_keyboard_shortcut kmix mic_mute Alt+Z 'Microphone Mute'
 put_kde_keyboard_shortcut kmix mute Alt+X 'Volume Mute'
 put_kde_keyboard_shortcut plasmashell 'toggle do not disturb' Alt+C
 put_kde_keyboard_shortcut mediacontrol playpausemedia Meta+Z 'Media Play'

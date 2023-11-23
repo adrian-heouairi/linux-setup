@@ -9,7 +9,7 @@ IFS='\n'
 if [ "$(cat /tmp/autokey-ctrl-c-fullpaths)" = "$(file-url-to-fullpath.sh "$(qdbus org.atheme.audacious /org/atheme/audacious org.atheme.audacious.SongFilename "$(qdbus org.atheme.audacious /org/atheme/audacious org.atheme.audacious.Position)")")" ]; then
     mpv --loop-file --force-window --start="$(LC_ALL=C awk "BEGIN { print $(qdbus org.atheme.audacious /org/atheme/audacious org.atheme.audacious.Time) / 1000 }")" --pause=no -- $(cat /tmp/autokey-ctrl-c-fullpaths)
 else
-    mpv --loop-file --force-window --start=0 --pause=no -- $(cat /tmp/autokey-ctrl-c-fullpaths)
+    mpv --loop-file --force-window --start=0 --pause=no -- $(cat /tmp/autokey-ctrl-c-fullpaths | sed -n '$p')
 fi
 
 ''')
