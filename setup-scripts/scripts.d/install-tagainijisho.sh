@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "${0%/*}"/../../resources/setup-scripts-base.sh
+
 current_tagainijisho_ver=$(apt show tagainijisho 2>/dev/null | sed -En 's/^Version: //p')
 latest_tagainijisho_ver=$(curl --retry 10 -Lso /dev/null -w '%{url_effective}' https://github.com/Gnurou/tagainijisho/releases/latest | sed 's|.*/||')
 if [ "$current_tagainijisho_ver" != "$latest_tagainijisho_ver" ]; then

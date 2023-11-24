@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "${0%/*}"/../../resources/setup-scripts-base.sh
+
 # Third argument must be only one shortcut, fourth argument must be the default shortcuts in KDE separated by \\t (\\t between simple quotes in Bash) for this shortcut or nothing
 put_kde_keyboard_shortcut() {
     sed -i "/$3\(,\|\\\\t\)/d" ~/.config/kglobalshortcutsrc # $3 may contain '+' so we can't use sed -E
