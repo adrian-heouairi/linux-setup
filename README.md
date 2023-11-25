@@ -10,6 +10,8 @@ linux-setup-startup.sh is started at login and it starts linux-setup-startup-add
 
 The only addon feature is ~/D/linux-setup-addon/bin/linux-setup-startup-addon.sh.
 
+You can add bash scripts you want to start at login in ~/.config/linux-setup/autostart/. They must be scripts that start a program only if it not already started.
+
 # To do manually
 
 apt virtualbox: virtualbox-qt virtualbox-guest-additions-iso virtualbox-ext-pack

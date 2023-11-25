@@ -1,7 +1,0 @@
-[Desktop Entry]
-Exec=bash -lc linux-setup-startup.sh
-Icon=dialog-scripts
-Name=linux-setup-startup.sh
-Path=
-Type=Application
-X-KDE-AutostartScript=true

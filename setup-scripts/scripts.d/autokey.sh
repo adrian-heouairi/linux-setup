@@ -10,4 +10,6 @@ rm -rf ~/.config/autokey
 
 cp -rf -- "$(linux-setup-get-resources-path.sh)/autokey" ~/.config/autokey
 
+echo 'pidof -x autokey-gtk || exec autokey-gtk' > ~/.config/linux-setup/autostart/autokey.sh
+
 autokey-gtk & disown
