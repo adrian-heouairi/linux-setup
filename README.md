@@ -10,6 +10,8 @@ The only addon feature as of right now is putting your personal scripts in ~/D/l
 
 You can add bash scripts you want to start at login in ~/.config/linux-setup/autostart/. They must be scripts that start a program only if it not already started.
 
+The scripts in setup-scripts can be run directly if you want, but having run linux-setup.sh beforehand is necessary. They must stay in the linux-setup folder because they need ../../resources/.
+
 # To do manually
 
 apt virtualbox: virtualbox-qt virtualbox-guest-additions-iso virtualbox-ext-pack
