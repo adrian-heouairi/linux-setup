@@ -1,14 +1,12 @@
 # linux-setup
 
-Setup script that setups a Kubuntu installation. Installs apt packages, puts my scripts in the PATH, etc.
+Setup scripts that setups a Kubuntu installation. Installs apt packages, puts my scripts in the PATH, etc. The scripts can be relaunched to update programs, etc.
 
 All of this procedure is independent from the Linux username.
 
-Launch linux-setup.sh to setup (it doesn't need to be in PATH). Logout login is required the first time for Ubuntu to put the scripts in PATH.
+The linux-setup directory can be anywhere. Launch linux-setup/bin/linux-setup.sh to setup (it doesn't need to be in PATH). Logout login is required the first time for Ubuntu to put the scripts in PATH.
 
-linux-setup-startup.sh is started at login and it starts linux-setup-startup-addon.sh. Put programs you want to start at login in ~/D/linux-setup-addon/bin/linux-setup-startup-addon.sh
-
-The only addon feature is ~/D/linux-setup-addon/bin/linux-setup-startup-addon.sh.
+The only addon feature as of right now is putting your personal scripts in ~/D/linux-setup-addon/bin/ so they are in PATH.
 
 You can add bash scripts you want to start at login in ~/.config/linux-setup/autostart/. They must be scripts that start a program only if it not already started.
 
