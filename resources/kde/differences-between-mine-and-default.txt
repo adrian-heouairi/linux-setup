@@ -1,0 +1,103 @@
+# List of files that exist both in the home of my system and on a default Kubuntu 22.04 and that differ
+# Some entries leaking data have been commented
+# Use to view contents of uncommented files: IFS=$'\n'; for i in $(sed '/^#/d' differences-between-mine-and-default.txt); do echo -e "#################### $i: ####################\n"; cat -- "$i"; echo; done
+
+/home/abc/.config/gtk-3.0/settings.ini
+/home/abc/.config/gtk-4.0/settings.ini
+/home/abc/.config/gtkrc
+/home/abc/.config/gtkrc-2.0
+/home/abc/.config/kcminputrc
+/home/abc/.config/kscreenlockerrc
+/home/abc/.config/kxkbrc
+/home/abc/.config/Trolltech.conf
+/home/abc/.config/xsettingsd/xsettingsd.conf
+/home/abc/.gtkrc-2.0
+# Contains font size in KDE settings
+/home/abc/.kde/share/config/kdeglobals
+
+# This one leaks some installed apps and monitors (displays) but we don't comment it
+/home/abc/.config/dolphinrc
+
+# These are interesting but they leak recent files
+#/home/abc/.config/kdeglobals
+#/home/abc/.config/konsolerc
+#/home/abc/.config/katerc
+#/home/abc/.config/gwenviewrc
+#/home/abc/.config/spectaclerc
+
+# Commented because we already have a setup script for this
+#/home/abc/.config/kglobalshortcutsrc
+
+# Manually added KDE keyboard shortcuts, I use xbindkeys instead
+#/home/abc/.config/khotkeysrc
+
+# TODO
+#/home/abc/.config/kwinrc
+#/home/abc/.config/plasmashellrc
+
+#/home/abc/.config/ktimezonedrc
+#/home/abc/.config/ksmserverrc
+#/home/abc/.config/kconf_updaterc
+#/home/abc/.config/kded_device_automounterrc
+#/home/abc/.config/kactivitymanagerdrc
+#/home/abc/.config/bluedevilglobalrc
+#/home/abc/.config/kde.org/UserFeedback.org.kde.dolphin.conf
+#/home/abc/.config/kde.org/UserFeedback.org.kde.kate.conf
+#/home/abc/.config/kde.org/UserFeedback.org.kde.plasmashell.conf
+#/home/abc/.config/kdeconnect/certificate.pem
+#/home/abc/.config/kdeconnect/config
+#/home/abc/.config/kdeconnect/privateKey.pem
+#/home/abc/.config/plasma-org.kde.plasma.desktop-appletsrc
+#/home/abc/.config/powermanagementprofilesrc
+#/home/abc/.config/pulse/cookie
+#/home/abc/.config/session/dolphin_dolphin_dolphin
+#/home/abc/.local/share/dolphin/dolphinstaterc
+#/home/abc/.local/share/dolphin/view_properties/global/.directory
+#/home/abc/.local/share/kactivitymanagerd/resources/database
+#/home/abc/.local/share/kactivitymanagerd/resources/database-shm
+#/home/abc/.local/share/kactivitymanagerd/resources/database-wal
+#/home/abc/.local/share/kactivitymanagerd/resources/errors.log
+#/home/abc/.local/share/kactivitymanagerd/resources/test-backup/database
+#/home/abc/.local/share/kactivitymanagerd/resources/test-backup/database-shm
+#/home/abc/.local/share/kactivitymanagerd/resources/test-backup/database-wal
+#/home/abc/.local/share/kactivitymanagerd/resources/working-backup/database
+#/home/abc/.local/share/kactivitymanagerd/resources/working-backup/database-shm
+#/home/abc/.local/share/kactivitymanagerd/resources/working-backup/database-wal
+#/home/abc/.local/share/kate/anonymous.katesession
+#/home/abc/.local/share/klipper/history2.lst
+#/home/abc/.local/share/krunnerstaterc
+#/home/abc/.local/share/kwalletd/kdewallet.kwl
+#/home/abc/.local/share/kwalletd/kdewallet.salt
+#/home/abc/.local/share/RecentDocuments/kdeglobals.desktop
+#/home/abc/.local/share/user-places.xbel
+#/home/abc/.local/share/user-places.xbel.bak
+#/home/abc/.profile
+#/home/abc/.bashrc
+#/home/abc/.config/dconf/user
+#/home/abc/.config/kactivitymanagerd-statsrc
+#/home/abc/.config/katemetainfos
+
+#/home/abc/.config/gtk-3.0/assets/close-active.svg
+#/home/abc/.config/gtk-3.0/assets/close-backdrop-active.svg
+#/home/abc/.config/gtk-3.0/assets/close-backdrop-hover.svg
+#/home/abc/.config/gtk-3.0/assets/close-backdrop-normal.svg
+#/home/abc/.config/gtk-3.0/assets/close-hover.svg
+#/home/abc/.config/gtk-3.0/assets/close-normal.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-active.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-backdrop-active.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-backdrop-hover.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-backdrop-normal.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-active.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-backdrop-active.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-backdrop-hover.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-backdrop-normal.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-hover.svg
+#/home/abc/.config/gtk-3.0/assets/maximized-normal.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-hover.svg
+#/home/abc/.config/gtk-3.0/assets/maximize-normal.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-active.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-backdrop-active.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-backdrop-hover.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-backdrop-normal.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-hover.svg
+#/home/abc/.config/gtk-3.0/assets/minimize-normal.svg

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Icon=text-plain
+Name=kdeglobals
+Type=Link
+URL[$e]=file:$HOME/.kde/share/config/kdeglobals
+X-KDE-LastOpenedWith=org.kde.kate

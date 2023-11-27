@@ -1,0 +1,9 @@
+[General]
+Version=201
+ViewPropsTimestamp=2022,4,23,11,53,24.44
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+Virtual1 Window-Maximized 1920x950=true
+Virtual1 Window-Maximized 800x600=true

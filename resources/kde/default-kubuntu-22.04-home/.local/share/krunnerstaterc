@@ -1,0 +1,5 @@
+[PlasmaRunnerManager]
+LaunchCounts=1 exec:///usr/bin/kate -b,5 exec:///usr/bin/konsole
+
+[PlasmaRunnerManager][History]
+d92dc847-9fa0-4917-80fa-b130545d5a57=
