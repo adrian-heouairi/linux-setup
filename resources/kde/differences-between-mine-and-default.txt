@@ -15,25 +15,27 @@
 # Contains font size in KDE settings
 /home/abc/.kde/share/config/kdeglobals
 
-# This one leaks some installed apps and monitors (displays) but we don't comment it
+# This one leaks minor information: recent apps and displays
 /home/abc/.config/dolphinrc
 
 # These are interesting but they leak recent files
-#/home/abc/.config/kdeglobals
-#/home/abc/.config/konsolerc
-#/home/abc/.config/katerc
-#/home/abc/.config/gwenviewrc
+/home/abc/.config/kdeglobals
+/home/abc/.config/konsolerc
+/home/abc/.config/katerc
+/home/abc/.config/gwenviewrc
+
+######################################## Below is not useful
+
+# TODO
 #/home/abc/.config/spectaclerc
+#/home/abc/.config/kwinrc
+#/home/abc/.config/plasmashellrc
 
 # Commented because we already have a setup script for this
 #/home/abc/.config/kglobalshortcutsrc
 
 # Manually added KDE keyboard shortcuts, I use xbindkeys instead
 #/home/abc/.config/khotkeysrc
-
-# TODO
-#/home/abc/.config/kwinrc
-#/home/abc/.config/plasmashellrc
 
 #/home/abc/.config/ktimezonedrc
 #/home/abc/.config/ksmserverrc
