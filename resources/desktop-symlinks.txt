@@ -1,1 +1,0 @@
-mpv-open.sh mpv-backup.sh

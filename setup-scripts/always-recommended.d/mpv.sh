@@ -16,3 +16,6 @@ mv -f /tmp/mpv-watch_later ~/.config/mpv/watch_later
 cp -f /usr/share/doc/mpv/examples/lua/autoload.lua ~/.config/mpv/scripts/
 
 cp -f -- "$(linux-setup-get-resources-path.sh)/dot-desktop-files/mpv-open-at-timestamp.desktop" ~/.local/share/applications/
+
+w=$(which mpv-open.sh) && ln -s -- "$w" ~/Desktop
+w=$(which mpv-backup.sh) && ln -s -- "$w" ~/Desktop
