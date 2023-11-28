@@ -1,0 +1,23 @@
+{
+    "workbench.colorTheme": "Default Light Modern",
+    "window.zoomLevel": 2,
+    "editor.fontSize": 16,
+    "workbench.editor.pinnedTabSizing": "compact",
+    "editor.wordWrap": "on",
+    "git.openRepositoryInParentFolders": "never",
+    "workbench.editor.tabSizing": "fixed",
+    "workbench.editor.wrapTabs": true,
+    "workbench.editor.tabSizingFixedMaxWidth": 150,
+    "workbench.editor.tabSizingFixedMinWidth": 130,
+    "workbench.editor.openPositioning": "last",
+    "terminal.integrated.cwd": "${fileDirname}",
+    "workbench.editor.untitled.labelFormat": "name",
+    "window.titleBarStyle": "custom",
+    "window.customMenuBarAltFocus": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 0,
+    "editor.rulers": [
+        80
+    ]
+}

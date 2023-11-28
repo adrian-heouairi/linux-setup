@@ -14,3 +14,7 @@ if [ "$current_ver" != "$latest_ver" ]; then
     wget "$base_url"/download/"$latest_ver"/"$deb" &&
     sudo apt install ./"$deb"
 fi
+
+mkdir -p ~/.config/VSCodium/User/
+
+cp -f -- "$(linux-setup-get-resources-path.sh)"/vscode/{keybindings,settings}.json ~/.config/VSCodium/User/

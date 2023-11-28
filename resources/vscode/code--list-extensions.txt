@@ -1,0 +1,2 @@
+jasonlhy.hungry-delete
+mads-hartmann.bash-ide-vscode
