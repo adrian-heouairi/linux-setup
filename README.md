@@ -14,11 +14,9 @@ The scripts in setup-scripts can be run directly if you want, but having run lin
 
 # To do manually
 
-apt virtualbox: virtualbox-qt virtualbox-guest-additions-iso virtualbox-ext-pack
-sudo usermod -a -G vboxusers <username> # For USB
+apt virtualbox guest: virtualbox-guest-x11 # imwheel
 
-apt virtualbox guest: imwheel virtualbox-guest-x11
-
-snap: chromium intellij-idea-community drawio
+snap: chromium drawio
+snap --classic: intellij-idea-community pycharm-community
 
 use KWalletManager and set an empty Kwallet-password, thus preventing the need of entering a password to unlock a wallet. Simply do not enter a password on both fields in Change Password... This may however lead to unwanted (read/write) access to the user's wallet. Enabling Prompt when an application accesses a wallet under Access Control is highly recommended to prevent unwanted access to the wallet.
