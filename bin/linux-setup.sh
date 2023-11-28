@@ -28,7 +28,7 @@ echo 'pidof -x mpris.py || exec mpris.py' > ~/.config/linux-setup/autostart/mpri
 IFS=$'\n'
 for i in $(find "$base"/setup-scripts/always-recommended.d/ -type f | sort -V); do
     echo "Running setup script $(realpath -- "$i"):"
-    bash -- "$i"
+    bash -- "$i" || echo "FAILED: $i"
 done
 
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" & disown; done
