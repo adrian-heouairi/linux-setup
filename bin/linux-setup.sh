@@ -6,7 +6,7 @@ addon=~/D/linux-setup-addon
 mkdir -p -- "$addon"/bin
 mkdir -p ~/.local/share/applications
 
-#trap exit SIGINT
+#trap exit SIGINT # Doesn't make ctrl+c exit linux-setup.sh, it still just exists the current command e.g. apt
 
 # Set ~/bin and ~/.local/bin
 [ -e ~/bin -a ! -L ~/bin ] && mv -vf -- ~/bin "$addon"/bin/previous-tilde-bin
