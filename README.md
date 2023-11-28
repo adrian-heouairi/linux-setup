@@ -7,10 +7,10 @@ All of this procedure is independent from the Linux username.
 The linux-setup directory can be anywhere. Launch linux-setup/bin/linux-setup.sh to setup (it doesn't need to be in PATH). Logout login is required the first time for Ubuntu to put the scripts in PATH.
 
 The only addon features as of right now:
-- Putting your personal scripts in ~/D/linux-setup-addon/bin/ (~/.local/bin is a symlink to it) so they are in PATH.
-- You can add bash scripts you want to start at login in ~/.config/linux-setup/autostart/. They must be scripts that start a program only if it is not already started.
+- Putting your personal scripts in `~/D/linux-setup-addon/bin/` (`~/.local/bin/` is a symlink to it) so they are in PATH.
+- You can add bash scripts you want to start at login in `~/.config/linux-setup/autostart/`. They must be scripts that start a program only if it is not already started.
 
-The scripts in setup-scripts can be run directly if you want, but having run linux-setup.sh beforehand is necessary. They must stay in the linux-setup folder because they need ../../resources/.
+The scripts in setup-scripts can be run directly if you want, but having run linux-setup.sh beforehand is necessary. They must stay in the linux-setup folder because they need `../../resources/`.
 
 # To do manually
 
