@@ -1,6 +1,7 @@
 # List of files that exist both in the home of my system and on a default Kubuntu 22.04 and that differ
 # Some entries leaking data have been commented
 # Use to view contents of uncommented files: IFS=$'\n'; for i in $(sed '/^#/d' differences-between-mine-and-default.txt); do echo -e "#################### $i: ####################\n"; cat -- "$i"; echo; done
+# Use linux-setup-backup-kde-conf.sh my-conf to generate the conf backup
 
 /home/abc/.config/gtk-3.0/settings.ini
 /home/abc/.config/gtk-4.0/settings.ini
@@ -23,6 +24,9 @@
 /home/abc/.config/konsolerc
 /home/abc/.config/katerc
 /home/abc/.config/gwenviewrc
+
+# Added manually as this is not in a default Kubuntu home
+/home/abc/.local/share/konsole/Profile 1.profile
 
 ######################################## Below is not useful
 
