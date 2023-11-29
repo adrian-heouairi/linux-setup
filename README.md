@@ -1,6 +1,6 @@
 # linux-setup
 
-Setup scripts that setups a Kubuntu installation. Installs apt packages, puts my scripts in the PATH, etc. The scripts can be relaunched to update programs, etc.
+Setup scripts that setup a Kubuntu installation. Installs apt packages, puts my scripts in the PATH, etc. The scripts can be relaunched to update programs, etc.
 
 All of this procedure is independent from the Linux username.
 
