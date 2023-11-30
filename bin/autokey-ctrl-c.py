@@ -3,8 +3,12 @@
 system.exec_command('echo a; rm -f /tmp/autokey-ctrl-c-file-urls /tmp/autokey-ctrl-c-fullpaths || true')
 system.exec_command('echo a; xsel -o -b > /tmp/autokey-ctrl-c-clipboard-save')
 
-if system.exec_command('xprop -id "$(xdotool getactivewindow)" WM_CLASS || true') == 'WM_CLASS(STRING) = "konsole", "konsole"':
+window_class = system.exec_command('echo a; xprop -id "$(xdotool getactivewindow)" WM_CLASS || true')
+
+if window_class == 'a\nWM_CLASS(STRING) = "konsole", "konsole"':
     keyboard.send_keys("<ctrl>+<shift>+c")
+elif window_class == 'a\nWM_CLASS(STRING) = "vscodium", "VSCodium"' or window_class == 'a\nWM_CLASS(STRING) = "code", "Code"':
+    keyboard.send_keys("<ctrl>+<alt>+c")
 else:
     keyboard.send_keys("<ctrl>+c")
 
