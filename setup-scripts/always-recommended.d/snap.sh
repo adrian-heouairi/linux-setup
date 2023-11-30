@@ -9,4 +9,4 @@ content=$(< "$package_list")
 content_classic=$(< "$package_list_classic")
 
 [ "$content" ] && sudo snap install $content
-[ "$content_classic" ] && sudo snap install --classic $content_classic
+[ "$content_classic" ] && sudo snap install --classic $content_classic || true
