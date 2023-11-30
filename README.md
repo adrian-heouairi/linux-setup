@@ -2,6 +2,8 @@
 
 Setup scripts that setup a Kubuntu installation. Installs apt packages, puts my scripts in the PATH, etc. The scripts can be relaunched to update programs, etc.
 
+I might have reinvented the wheel. I don't know.
+
 All of this procedure is independent from the Linux username.
 
 The linux-setup directory can be anywhere. Launch linux-setup/bin/linux-setup.sh to setup (it doesn't need to be in PATH). Logout login is required the first time for Ubuntu to put the scripts in PATH.
