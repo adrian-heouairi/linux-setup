@@ -30,11 +30,11 @@ for i; do
         while ! wget -- "$deb_url"; do :; done
     fi
 
-    deb_filenames+=("$deb_filename")
+    deb_filenames+=(./"$deb_filename")
     pkgs+=("$pkg")
 done
 
-if ! sudo dpkg --install -- "${deb_filenames[@]}"; then
+if ! sudo apt install "${deb_filenames[@]}"; then
     sudo apt -y remove -- "${pkgs[@]}"
     echo "$0: Error, no packages have been installed"
     exit 1
