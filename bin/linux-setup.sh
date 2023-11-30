@@ -31,6 +31,13 @@ for i in $(find "$base"/setup-scripts/always-recommended.d/ -type f | sort -V); 
     bash -- "$i" || echo "FAILED: $i"
 done
 
+if [ "$1" ]; then
+    for i in $(find "$base"/setup-scripts/always-optional.d/ -type f | sort -V); do
+        echo "Running setup script $(realpath -- "$i"):"
+        bash -- "$i" || echo "FAILED: $i"
+    done
+fi
+
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" & disown; done
 
 # if [ "$HOSTNAME" = agnr ]; then
