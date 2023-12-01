@@ -1,6 +1,6 @@
 {
     "type": "script",
-    "description": "Search ctrl+c on Google",
+    "description": "Search Ctrl+C on Google",
     "store": {},
     "modes": [
         3

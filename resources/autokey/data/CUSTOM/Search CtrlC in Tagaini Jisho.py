@@ -2,6 +2,8 @@
 
 import os; exec(open(os.getenv('HOME') + '/bin/autokey-ctrl-c.py').read())
 
+system.exec_command("xsel -b < '{}'".format(CTRL_C_new_clipboard_file))
+
 #system.exec_command('echo a; if ! pidof tagainijisho; then tagainijisho & sleep 1; fi') # Doesn't return
 if system.exec_command('echo -n a; pidof tagainijisho || true') == 'a':
     import subprocess; subprocess.run("tagainijisho & sleep 1", shell=True)
@@ -18,6 +20,6 @@ keyboard.send_keys("<ctrl>+v")
 keyboard.send_keys("<ctrl>+o")
 time.sleep(.2)
 
-system.exec_command('echo a; xsel -b < /tmp/autokey-ctrl-c-clipboard-save')
+system.exec_command("xsel -b < '{}'".format(CTRL_C_clipboard_backup_file))
 
 system.exec_command('echo a; wmctrl -k on; wmctrl -k off')

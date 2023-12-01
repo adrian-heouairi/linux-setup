@@ -1,31 +1,57 @@
+# This script will press Ctrl+C, store the contents, then restore the previous clipboard
+
 # system.exec_command removes \n at the end if present
 
-system.exec_command('echo a; rm -f /tmp/autokey-ctrl-c-file-urls /tmp/autokey-ctrl-c-fullpaths || true')
-system.exec_command('echo a; xsel -o -b > /tmp/autokey-ctrl-c-clipboard-save')
+CTRL_C_clipboard_backup_file = '/dev/shm/autokey-ctrl-c-clipboard-save'
+CTRL_C_new_clipboard_file = '/dev/shm/autokey-ctrl-c-new-clipboard'
 
-window_class = system.exec_command('echo a; xprop -id "$(xdotool getactivewindow)" WM_CLASS || true')
+# These two will be empty if the Ctrl+C doesn't return fullpaths or file:// URLs
+CTRL_C_file_urls_file = '/dev/shm/autokey-ctrl-c-file-urls'
+CTRL_C_file_fullpaths_file = '/dev/shm/autokey-ctrl-c-fullpaths'
 
-if window_class == 'a\nWM_CLASS(STRING) = "konsole", "konsole"':
+system.exec_command( "echo a; xsel -o -b > '{}'".format(CTRL_C_clipboard_backup_file) )
+
+window_class = system.exec_command('echo a; xprop -id "$(xdotool getactivewindow)" WM_CLASS || true')[2:]
+
+if window_class == 'WM_CLASS(STRING) = "konsole", "konsole"':
     keyboard.send_keys("<ctrl>+<shift>+c")
-elif window_class == 'a\nWM_CLASS(STRING) = "vscodium", "VSCodium"' or window_class == 'a\nWM_CLASS(STRING) = "code", "Code"':
+elif window_class == 'WM_CLASS(STRING) = "vscodium", "VSCodium"' or window_class == 'WM_CLASS(STRING) = "code", "Code"':
+    keyboard.send_keys("<ctrl>+c")
     keyboard.send_keys("<ctrl>+<alt>+c")
 else:
     keyboard.send_keys("<ctrl>+c")
 
 time.sleep(.5)
 
-clipboard = system.exec_command('xsel -o -b')
+system.exec_command("""echo a
 
-if clipboard.startswith('file://'):
-    clipboard_fullpaths = system.exec_command('file-url-to-fullpath.sh "$(xsel -o -b)" || true')
-    clipboard_urls_splitted = clipboard.split('\n')
-    clipboard_fullpaths_splitted = clipboard_fullpaths.split('\n')
-    
-    # The existence of these files may prove the success of this script
-    with open('/tmp/autokey-ctrl-c-fullpaths', "w") as f: f.write(clipboard_fullpaths)
-    with open('/tmp/autokey-ctrl-c-file-urls', "w") as f: f.write(clipboard)
+clipboard_backup_file='{}'
+new_clipboard_file='{}'
+file_urls_file='{}'
+file_fullpaths_file='{}'
 
-if clipboard.startswith('/'):
-    clipboard_fullpaths_splitted = clipboard.split('\n')
+clipboard=$(xsel -o -b)
 
-#system.exec_command('echo a; xsel -b < /tmp/autokey-ctrl-c-clipboard-save')
+printf %s "$clipboard" > "$new_clipboard_file"
+
+echo -n > "$file_urls_file"
+echo -n > "$file_fullpaths_file"
+
+HOME=~
+if printf %s "$clipboard" | grep -E '^~(/|$)' > /dev/null; then
+    clipboard=$(printf %s "$clipboard" | sed "s|^~|$HOME|")
+fi
+
+if printf %s "$clipboard" | grep '^file://' > /dev/null; then
+    clipboard=$(file-url-to-fullpath.sh "$clipboard")
+fi
+
+if printf %s "$clipboard" | grep '^/' > /dev/null; then
+    echo "$clipboard" > "$file_fullpaths_file"
+
+    echo "$clipboard" | sed 's|^|file://|' > "$file_urls_file"
+fi
+
+xsel -b < "$clipboard_backup_file"
+
+true""".format(CTRL_C_clipboard_backup_file, CTRL_C_new_clipboard_file, CTRL_C_file_urls_file, CTRL_C_file_fullpaths_file))

@@ -1,11 +1,11 @@
 {
     "type": "script",
-    "description": "Search ctrl+c in TJ",
+    "description": "Search Ctrl+C in Tagaini Jisho",
     "store": {},
     "modes": [
         3
     ],
-    "usageCount": 3019,
+    "usageCount": 3030,
     "prompt": false,
     "omitTrigger": false,
     "showInTrayMenu": false,

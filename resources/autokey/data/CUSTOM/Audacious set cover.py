@@ -2,12 +2,10 @@ import os; exec(open(os.getenv('HOME') + '/bin/autokey-ctrl-c.py').read())
 
 system.exec_command('''echo a;
 IFS='\n'
-[ -f /tmp/autokey-ctrl-c-fullpaths ] || exit 0
+f='{}'
 
 
-konsole --new-tab --hold -e mp3-set-cover.sh $(cat /tmp/autokey-ctrl-c-fullpaths)
+konsole --new-tab --hold -e mp3-set-cover.sh $(cat "$f")
 
 
-''')
-
-system.exec_command('echo a; xsel -b < /tmp/autokey-ctrl-c-clipboard-save')
+'''.format(CTRL_C_file_fullpaths_file))

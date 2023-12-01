@@ -1,11 +1,11 @@
 {
     "type": "script",
-    "description": "Audacious mpv",
+    "description": "Search Ctrl+C on weblio.jp",
     "store": {},
     "modes": [
         3
     ],
-    "usageCount": 188,
+    "usageCount": 49,
     "prompt": false,
     "omitTrigger": false,
     "showInTrayMenu": false,
@@ -19,12 +19,13 @@
     },
     "hotkey": {
         "modifiers": [
-            "<alt>"
+            "<alt>",
+            "<shift>"
         ],
-        "hotKey": "a"
+        "hotKey": "2"
     },
     "filter": {
-        "regex": "audacious.Audacious",
+        "regex": null,
         "isRecursive": false
     }
 }
