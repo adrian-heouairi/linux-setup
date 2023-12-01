@@ -23,3 +23,7 @@ snap: chromium drawio
 snap --classic: intellij-idea-community pycharm-community
 
 use KWalletManager and set an empty Kwallet-password, thus preventing the need of entering a password to unlock a wallet. Simply do not enter a password on both fields in Change Password... This may however lead to unwanted (read/write) access to the user's wallet. Enabling Prompt when an application accesses a wallet under Access Control is highly recommended to prevent unwanted access to the wallet.
+
+# KDE bug
+
+After modifying a .desktop file in `~/.local/share/applications`, you have to rename it for changes to take effect.

@@ -2,9 +2,7 @@
     "type": "script",
     "description": "Audacious copy fullpath",
     "store": {},
-    "modes": [
-        3
-    ],
+    "modes": [],
     "usageCount": 3,
     "prompt": false,
     "omitTrigger": false,

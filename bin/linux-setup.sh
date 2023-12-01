@@ -16,7 +16,7 @@ ln -s -- "$addon"/bin ~/.local/bin || exit
 ln -s -- "$base"/bin ~/bin || exit
 export "PATH=$HOME/.local/bin:$HOME/bin:$PATH"
 
-cp -f -- "$(linux-setup-get-resources-path.sh)/dot-desktop-files/"{add-symlink-on-desktop.desktop,konsole-open-in-new-tab.desktop} ~/.local/share/applications/
+cp -f -- "$(linux-setup-get-resources-path.sh)"/dot-desktop-files-main-script/* ~/.local/share/applications/
 
 mkdir -p ~/D/linux-setup-programs
 
@@ -40,7 +40,9 @@ fi
 
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" & disown; done
 
-# if [ "$HOSTNAME" = agnr ]; then
-#     rm -rf ~/.config/autokey
-#     ln -s ../D/Shared-ST-agnr/linux-setup/files/home/.config/autokey ~/.config/autokey
-# fi
+if [ "$HOSTNAME" = aetu2 ]; then
+    killall -9 autokey autokey-qt autokey-gtk
+    rm -rf ~/.config/autokey
+    ln -s -- "$(linux-setup-get-resources-path.sh)"/autokey ~/.config/autokey
+    autokey-gtk & disown
+fi
