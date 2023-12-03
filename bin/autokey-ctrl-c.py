@@ -21,7 +21,7 @@ elif window_class == 'WM_CLASS(STRING) = "vscodium", "VSCodium"' or window_class
 else:
     keyboard.send_keys("<ctrl>+c")
 
-time.sleep(.5)
+#time.sleep(.5)
 
 system.exec_command("""echo a
 
@@ -30,7 +30,12 @@ new_clipboard_file='{}'
 file_urls_file='{}'
 file_fullpaths_file='{}'
 
-clipboard=$(xsel -o -b)
+old_clipboard=$(cat -- "$clipboard_backup_file")
+for i in $(seq 1 50); do
+    clipboard=$(xsel -o -b)
+    [ "$clipboard" != "$old_clipboard" ] && break
+    sleep .01
+done
 
 printf %s "$clipboard" > "$new_clipboard_file"
 
