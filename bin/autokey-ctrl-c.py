@@ -2,20 +2,20 @@
 
 # system.exec_command removes \n at the end if present
 
-CTRL_C_clipboard_backup_file = '/dev/shm/autokey-ctrl-c-clipboard-save'
-CTRL_C_new_clipboard_file = '/dev/shm/autokey-ctrl-c-new-clipboard'
+CTRL_C_clipboard_backup_file = '/dev/shm/autokey-ctrl-c-clipboard-save.txt'
+CTRL_C_new_clipboard_file = '/dev/shm/autokey-ctrl-c-new-clipboard.txt'
 
 # These two will be empty if the Ctrl+C doesn't return fullpaths or file:// URLs
-CTRL_C_file_urls_file = '/dev/shm/autokey-ctrl-c-file-urls'
-CTRL_C_file_fullpaths_file = '/dev/shm/autokey-ctrl-c-fullpaths'
+CTRL_C_file_urls_file = '/dev/shm/autokey-ctrl-c-file-urls.txt'
+CTRL_C_file_fullpaths_file = '/dev/shm/autokey-ctrl-c-fullpaths.txt'
 
 system.exec_command( "echo a; xsel -o -b > '{}'".format(CTRL_C_clipboard_backup_file) )
 
-window_class = system.exec_command('echo a; xprop -id "$(xdotool getactivewindow)" WM_CLASS || true')[2:]
+window_class = system.exec_command('echo a; get-current-window-class.sh')[2:]
 
-if window_class == 'WM_CLASS(STRING) = "konsole", "konsole"':
+if window_class == 'konsole.konsole':
     keyboard.send_keys("<ctrl>+<shift>+c")
-elif window_class == 'WM_CLASS(STRING) = "vscodium", "VSCodium"' or window_class == 'WM_CLASS(STRING) = "code", "Code"':
+elif window_class == 'vscodium.VSCodium' or window_class == 'code.Code':
     keyboard.send_keys("<ctrl>+c")
     keyboard.send_keys("<ctrl>+<alt>+c")
 else:
@@ -29,10 +29,17 @@ clipboard_backup_file='{}'
 new_clipboard_file='{}'
 file_urls_file='{}'
 file_fullpaths_file='{}'
+window_class='{}'
+
+if printf %s "$window_class" | grep ^jetbrains; then
+    get_clipboard_command='qdbus org.kde.klipper /klipper getClipboardContents'
+else
+    get_clipboard_command='xsel -o -b'
+fi
 
 old_clipboard=$(cat -- "$clipboard_backup_file")
 for i in $(seq 1 50); do
-    clipboard=$(xsel -o -b)
+    clipboard=$($get_clipboard_command)
     [ "$clipboard" != "$old_clipboard" ] && break
     sleep .01
 done
@@ -59,4 +66,4 @@ fi
 
 xsel -b < "$clipboard_backup_file"
 
-true""".format(CTRL_C_clipboard_backup_file, CTRL_C_new_clipboard_file, CTRL_C_file_urls_file, CTRL_C_file_fullpaths_file))
+true""".format(CTRL_C_clipboard_backup_file, CTRL_C_new_clipboard_file, CTRL_C_file_urls_file, CTRL_C_file_fullpaths_file, window_class))
