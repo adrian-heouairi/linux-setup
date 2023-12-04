@@ -9,9 +9,15 @@ CTRL_C_new_clipboard_file = '/dev/shm/autokey-ctrl-c-new-clipboard.txt'
 CTRL_C_file_urls_file = '/dev/shm/autokey-ctrl-c-file-urls.txt'
 CTRL_C_file_fullpaths_file = '/dev/shm/autokey-ctrl-c-fullpaths.txt'
 
-system.exec_command( "echo a; xsel -o -b > '{}'".format(CTRL_C_clipboard_backup_file) )
-
 window_class = system.exec_command('echo a; get-current-window-class.sh')[2:]
+
+import re
+if re.search("^jetbrains", window_class):
+    CTRL_C_clipboard_acquisition_command = 'qdbus org.kde.klipper /klipper getClipboardContents'
+else:
+    CTRL_C_clipboard_acquisition_command = 'xsel -o -b'
+
+system.exec_command( "echo a; {} > '{}'".format(CTRL_C_clipboard_acquisition_command, CTRL_C_clipboard_backup_file) )
 
 if window_class == 'konsole.konsole':
     keyboard.send_keys("<ctrl>+<shift>+c")
@@ -30,16 +36,11 @@ new_clipboard_file='{}'
 file_urls_file='{}'
 file_fullpaths_file='{}'
 window_class='{}'
-
-if printf %s "$window_class" | grep ^jetbrains; then
-    get_clipboard_command='qdbus org.kde.klipper /klipper getClipboardContents'
-else
-    get_clipboard_command='xsel -o -b'
-fi
+clipboard_acquisition_command='{}'
 
 old_clipboard=$(cat -- "$clipboard_backup_file")
 for i in $(seq 1 50); do
-    clipboard=$($get_clipboard_command)
+    clipboard=$($clipboard_acquisition_command)
     [ "$clipboard" != "$old_clipboard" ] && break
     sleep .01
 done
@@ -66,4 +67,4 @@ fi
 
 xsel -b < "$clipboard_backup_file"
 
-true""".format(CTRL_C_clipboard_backup_file, CTRL_C_new_clipboard_file, CTRL_C_file_urls_file, CTRL_C_file_fullpaths_file, window_class))
+true""".format(CTRL_C_clipboard_backup_file, CTRL_C_new_clipboard_file, CTRL_C_file_urls_file, CTRL_C_file_fullpaths_file, window_class, CTRL_C_clipboard_acquisition_command))
