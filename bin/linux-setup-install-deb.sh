@@ -7,9 +7,12 @@ other_deb_url=$2 # Any .deb URL which is not GitHub
 github_repo_url=$3 # E.g. https://github.com/VSCodium/vscodium
 github_deb_filename_template=$4 # May contain :VERSION: which will be replaced (s///g) by the latest version when downloading, e.g. codium_:VERSION:_amd64.deb
 
-sudo apt -- install "$package_name" && exit
+if apt -- policy "$package_name" | grep -E '(https?|s?ftps?)://'; then
+    sudo apt -- install "$package_name"
+    exit
+fi
 
-cd /tmp
+cd /tmp || exit 1
 downloaded_deb_filename=linux-setup-$package_name-$(date +%s)-$(uuidgen).deb
 
 if [ "$other_deb_url" ]; then
