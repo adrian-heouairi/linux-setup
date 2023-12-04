@@ -1,7 +1,8 @@
 # Put modifiers in this order: Control+Shift+Alt+Mod4+Mod5
 # The order of modifiers in KDE programs is Meta+Ctrl+Alt+Shift (Alt Gr cannot be used as a modifier)
 
-"bd=$(dirname -- "$(realpath ~/bin/linux-setup.sh)"); kate -- ~/D/linux-setup-addon/xbindkeysrc.txt "$bd"/../xbindkeysrc.txt"
+#"bd=$(dirname -- "$(realpath ~/bin/linux-setup.sh)"); kate -- ~/D/linux-setup-addon/xbindkeysrc.txt "$bd"/../xbindkeysrc.txt"
+"kate -- "$(linux-setup-get-resources-path.sh)"/.xbindkeysrc"
 Mod4 + b
 
 "killall -HUP xbindkeys"
@@ -83,7 +84,7 @@ Shift+Mod4 + 1
 #"windows-cycle.sh ''"
 #Shift+Alt + 4
 
-"windows-cycle.sh '\[Search]'"
+"windows-cycle.sh '\[General]'"
 Shift+Alt + q
 
 #"windows-cycle.sh '\[Keep]'"
