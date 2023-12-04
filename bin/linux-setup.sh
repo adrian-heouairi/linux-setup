@@ -6,7 +6,7 @@ addon=~/D/linux-setup-addon
 mkdir -p -- "$addon"/bin
 mkdir -p ~/.local/share/applications
 
-trap exit INT # TODO Doesn't make Ctrl+C exit linux-setup.sh, it still just exits the current command e.g. apt
+trap exit SIGINT # The scripts launched by this script must also have this line for Ctrl+C to exit everything
 
 # Set ~/bin and ~/.local/bin
 [ -e ~/bin -a ! -L ~/bin ] && mv -vf -- ~/bin "$addon"/bin/previous-tilde-bin
