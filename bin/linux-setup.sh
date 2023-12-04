@@ -39,10 +39,3 @@ if [ "$1" ]; then
 fi
 
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" & disown; done
-
-if [ "$HOSTNAME" = aetu2 ]; then
-    killall -9 autokey autokey-qt autokey-gtk
-    rm -rf ~/.config/autokey
-    ln -s -- "$(linux-setup-get-resources-path.sh)"/autokey ~/.config/autokey
-    autokey-gtk & disown
-fi
