@@ -40,4 +40,4 @@ if [ "$1" ]; then
     done
 fi
 
-for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" & disown; done
+for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" &>/dev/null & disown; done

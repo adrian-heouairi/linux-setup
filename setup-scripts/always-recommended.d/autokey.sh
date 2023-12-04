@@ -16,4 +16,4 @@ fi
 
 echo 'pidof -x autokey-gtk || exec autokey-gtk' > ~/.config/linux-setup/autostart/autokey.sh
 
-autokey-gtk & disown
+autokey-gtk &>/dev/null & disown

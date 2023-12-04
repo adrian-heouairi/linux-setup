@@ -32,4 +32,4 @@ put_kde_keyboard_shortcut plasmashell 'activate task manager entry 9' Meta+Shift
 put_kde_keyboard_shortcut kwin 'Window Close' Meta+X Alt+F4
 put_kde_keyboard_shortcut org.kde.krunner.desktop _launch Alt+Space Alt+F2
 
-kglobalaccel5 & disown
+kglobalaccel5 &>/dev/null & disown

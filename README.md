@@ -27,3 +27,7 @@ use KWalletManager and set an empty Kwallet-password, thus preventing the need o
 # KDE bug
 
 After modifying a .desktop file in `~/.local/share/applications`, you have to rename it for changes to take effect.
+
+# Setup script guidelines
+
+Setup scripts can print errors, but they should silence programs that print useless information.

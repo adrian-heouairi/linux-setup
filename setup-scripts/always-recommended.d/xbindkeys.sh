@@ -10,4 +10,4 @@ killall -9 xbindkeys
 
 echo 'pidof -x xbindkeys || exec xbindkeys' > ~/.config/linux-setup/autostart/xbindkeys.sh
 
-xbindkeys & disown
+xbindkeys &>/dev/null & disown
