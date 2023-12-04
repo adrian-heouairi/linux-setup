@@ -7,7 +7,6 @@ other_deb_url=$2 # Any .deb URL which is not GitHub
 github_repo_url=$3 # E.g. https://github.com/VSCodium/vscodium
 github_deb_filename_template=$4 # May contain :VERSION: which will be replaced (s///g) by the latest version when downloading, e.g. codium_:VERSION:_amd64.deb
 
-sudo apt update
 sudo apt -- install "$package_name" && exit
 
 cd /tmp

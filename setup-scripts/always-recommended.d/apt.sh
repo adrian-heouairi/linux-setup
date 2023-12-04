@@ -6,8 +6,6 @@ package_list=$(linux-setup-get-resources-path.sh)/install-apt.txt
 
 content=$(sed '/^#/d' "$package_list")
 
-sudo apt update
-
 [ "$content" ] && sudo apt install $content
 
 echo 'pidof -x syncthing || exec syncthing --no-browser' > ~/.config/linux-setup/autostart/syncthing.sh

@@ -25,6 +25,8 @@ mkdir -p ~/.config/autostart ~/.config/linux-setup/autostart
 cp -f -- "$(linux-setup-get-resources-path.sh)/dot-desktop-files/linux-setup-autostart.desktop" ~/.config/autostart/
 echo 'pidof -x mpris.py || exec mpris.py' > ~/.config/linux-setup/autostart/mpris.py.sh
 
+sudo apt update
+
 IFS=$'\n'
 for i in $(find "$base"/setup-scripts/always-recommended.d/ -type f | sort -V); do
     echo "Running setup script $(realpath -- "$i"):"
