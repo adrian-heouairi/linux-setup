@@ -22,7 +22,7 @@ system.exec_command( "echo a; {} > '{}'".format(CTRL_C_clipboard_acquisition_com
 if window_class == 'konsole.konsole':
     keyboard.send_keys("<ctrl>+<shift>+c")
 elif window_class == 'vscodium.VSCodium' or window_class == 'code.Code':
-    keyboard.send_keys("<ctrl>+c")
+    #keyboard.send_keys("<ctrl>+c")
     keyboard.send_keys("<ctrl>+<alt>+c")
 else:
     keyboard.send_keys("<ctrl>+c")
