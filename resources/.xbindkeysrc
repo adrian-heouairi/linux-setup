@@ -8,6 +8,9 @@ Mod4 + b
 "killall -HUP xbindkeys"
 Alt+Mod4 + b
 
+"ids=$(wmctrl -lx | awk '$3 == "Navigator.firefox" { print $1 }'); for i in $ids; do wmctrl -Fir $i -b add,maximized_horz,maximized_vert; done"
+Mod4 + f
+
 "pacmd list-sources | grep -oP 'index: \d+' | awk '{ print $2 }' | xargs -I{} pactl set-source-mute {} toggle"
 Alt + z
 
