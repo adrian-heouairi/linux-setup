@@ -6,4 +6,4 @@ linux-setup-install-deb.sh codium '' https://github.com/VSCodium/vscodium codium
 
 mkdir -p ~/.config/VSCodium/User/
 
-cp -f -- "$(linux-setup-get-resources-path.sh)"/vscode/{keybindings,settings}.json ~/.config/VSCodium/User/
+[ -e ~/.config/VSCodium/User/settings.json ] || cp -f -- "$(linux-setup-get-resources-path.sh)"/vscode/{keybindings,settings}.json ~/.config/VSCodium/User/

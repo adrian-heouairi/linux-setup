@@ -6,4 +6,4 @@ linux-setup-install-deb.sh code 'https://code.visualstudio.com/sha/download?buil
 
 mkdir -p ~/.config/Code/User/
 
-cp -f -- "$(linux-setup-get-resources-path.sh)"/vscode/{keybindings,settings}.json ~/.config/Code/User/
+[ -e ~/.config/Code/User/settings.json ] || cp -f -- "$(linux-setup-get-resources-path.sh)"/vscode/{keybindings,settings}.json ~/.config/Code/User/
