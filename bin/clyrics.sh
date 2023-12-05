@@ -52,7 +52,7 @@ if [ "$lyrics" ]; then
     fi
     
     printf '%s\n' "$lyrics" > "$fullpath_to_write"
-    kate -- "$fullpath_to_write" & disown
+    text-editor -- "$fullpath_to_write" & disown
 else
     notify-send -i download -- "${0##*/}" "No lyrics found on Google for the query: $query_terms"
 fi

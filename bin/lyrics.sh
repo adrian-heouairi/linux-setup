@@ -21,9 +21,9 @@ if [ -f "$lyrics_file" ]; then
         line_to_open_at=$((number_of_lines_in_file * position / length))
         ((line_to_open_at < 1)) && line_to_open_at=1
         ((line_to_open_at > number_of_lines_in_file)) && line_to_open_at=$number_of_lines_in_file
-        kate --line "$line_to_open_at" -- "$lyrics_file" & disown
+        text-editor --line "$line_to_open_at" -- "$lyrics_file" & disown
     else
-        kate -- "$lyrics_file" & disown
+        text-editor -- "$lyrics_file" & disown
     fi
 else
     clyrics.sh
