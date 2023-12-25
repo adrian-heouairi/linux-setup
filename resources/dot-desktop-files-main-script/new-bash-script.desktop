@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Create new Bash script here and open it
+#GenericName=Open at timestamp
+#Comment=
+Icon=bash
+#Keywords=audio;player;music;
+#Categories=AudioVideo;Audio;Player;
+Exec=bash -c 't=$(kdialog --inputbox "New Bash script in $1 (slashes are allowed):" .sh) && { p=$1/$t; mkdir -p -- "$(dirname -- "$p")"; echo -e "#!/bin/bash\n" > "$p"; chmod +x -- "$p"; codium -- "$p"; }' bash %f
+#TryExec=
+#StartupNotify=false
+#Terminal=false
+MimeType=inode/directory;

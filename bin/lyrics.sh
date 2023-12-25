@@ -2,7 +2,7 @@
 
 # Compatible with other than mp3 e.g. webm, mkv
 
-lyrics_dir=~/D/Lyrics
+lyrics_dir=~/D/Shared-ST-apho/Music/Lyrics
 
 song_fullpath=$(qdbus py.mpris /py/mpris py.mpris.GetFullpath)
 [ -f "$song_fullpath" ] || exit 1

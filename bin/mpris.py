@@ -4,7 +4,7 @@
 
 import os
 
-from pathlib import Path; home = str(Path.home()); mpris_bookmarks_dir = home + "/D/mpris-bookmarks"
+from pathlib import Path; home = str(Path.home()); mpris_bookmarks_dir = home + "/D/Shared-ST-apho/Music/mpris-bookmarks"
 if not os.path.exists(mpris_bookmarks_dir): os.makedirs(mpris_bookmarks_dir, exist_ok=True)
 
 my_service = "py.mpris"
