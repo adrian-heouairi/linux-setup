@@ -17,5 +17,7 @@ cp -f /usr/share/doc/mpv/examples/lua/autoload.lua ~/.config/mpv/scripts/
 
 cp -f -- "$(linux-setup-get-resources-path.sh)/dot-desktop-files/mpv-open-at-timestamp.desktop" ~/.local/share/applications/
 
+echo 'pidof -x mpv-auto-backup.sh || exec mpv-auto-backup.sh' > ~/.config/linux-setup/autostart/mpv-auto-backup.sh
+
 w=$(which mpv-open.sh) && ln -s -- "$w" ~/Desktop
-w=$(which mpv-backup.sh) && ln -s -- "$w" ~/Desktop || true
+w=$(which mpv-close.sh) && ln -s -- "$w" ~/Desktop || true
