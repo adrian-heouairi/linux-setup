@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# The window title is used to extract playlist position, it should follow ^[0-9]+ (mpv.conf: title="${playlist-pos-1}...")
+
+# For playlist position to be restored (e.g. remember the current file in the playlist), you must select all files in your file explorer and open them (all files must be in the command line of the mpv instance). If you open only one file and rely on autoload.lua to add the playlist automatically, the playlist doesn't exist at launch time (it is created right after), thus the --playlist-start=n option we add doesn't work
+
 dir=~/Documents/mpv-save-restore
 
 if [ "$1" = save ]; then
