@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 sudo apt install libwww-mechanize-perl
 
 if [ -e ~/D/linux-setup-programs/clyrics ]; then

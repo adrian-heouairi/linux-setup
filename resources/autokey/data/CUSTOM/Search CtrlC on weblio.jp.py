@@ -1,4 +1,5 @@
-import os; exec(open(os.getenv('HOME') + '/bin/autokey-ctrl-c.py').read())
+ctrl_c_path = system.exec_command('which autokey-ctrl-c.py')
+import os; exec(open(ctrl_c_path).read())
 
 system.exec_command("""echo a
 firefox --private-window "https://www.weblio.jp/content/$(cat -- '{}')"

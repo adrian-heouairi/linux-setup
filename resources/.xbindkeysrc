@@ -1,7 +1,6 @@
 # Put modifiers in this order: Control+Shift+Alt+Mod4+Mod5
 # The order of modifiers in KDE programs is Meta+Ctrl+Alt+Shift (Alt Gr cannot be used as a modifier)
 
-#"bd=$(dirname -- "$(realpath ~/bin/linux-setup.sh)"); text-editor -- ~/D/linux-setup-addon/xbindkeysrc.txt "$bd"/../xbindkeysrc.txt"
 "text-editor -- "$(linux-setup-get-resources-path.sh)"/.xbindkeysrc"
 Mod4 + b
 

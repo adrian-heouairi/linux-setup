@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dirname -- "$(dirname -- "$(realpath -- ~/bin/linux-setup.sh)")"
+dirname -- "$(dirname -- "$(which linux-setup.sh)")"

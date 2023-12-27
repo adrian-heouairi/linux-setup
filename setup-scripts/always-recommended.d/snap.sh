@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 package_list=$(linux-setup-get-resources-path.sh)/install-snap.txt
 package_list_classic=$(linux-setup-get-resources-path.sh)/install-snap-classic.txt
 

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 sudo apt install autokey-gtk
 
 killall -9 autokey-qt autokey autokey-gtk

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 tmp_bookmark_proof=' <bookmark href="file:///tmp">'
 
 tmp_bookmark=' <bookmark href="file:///tmp">\n  <title>tmp</title>\n  <info>\n   <metadata owner="http://freedesktop.org">\n    <bookmark:icon name="folder-temp"/>\n   </metadata>\n   <metadata owner="http://www.kde.org">\n    <ID>1698215335/0</ID>\n   </metadata>\n  </info>\n </bookmark>'

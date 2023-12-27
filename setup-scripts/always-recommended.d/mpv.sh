@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 sudo apt install mpv mpv-mpris
 
 rm -rf /tmp/mpv-watch_later

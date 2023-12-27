@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "${0%/*}"/../../resources/setup-scripts-base.sh
-
 current_anki_ver=$(anki --version | sed -n '$s/.* //p')
 latest_anki_ver=$(curl --retry 10 -Lso /dev/null -w '%{url_effective}' https://github.com/ankitects/anki/releases/latest | sed 's|.*/||')
 if [ "$current_anki_ver" != "$latest_anki_ver" ]; then

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-printf '%s\n' "$(dirname -- "$(dirname -- "$(realpath -- ~/bin/linux-setup.sh)")")/resources"
+printf '%s\n' "$(dirname -- "$(dirname -- "$(which linux-setup.sh)")")/resources"
