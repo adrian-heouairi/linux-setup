@@ -36,7 +36,7 @@ Control+Alt+Mod4 + w
 Control+Alt+Mod4 + g
 
 "sed -Ez 's|.*\[Containments]\[1]\[Wallpaper]\[org\.kde\.image]\[General]\nImage=(file://)?([^\n]+).*|\2|' ~/.config/plasma-org.kde.plasma.desktop-appletsrc | sed 's|^|file://|' | xsel -b; notify-send -i edit-copy 'Copied wallpaper URL to clipboard' "$(xsel -o -b)""
-Shift+Mod4 + d
+Alt+Mod4 + d
 
 "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 Alt+Mod4 + a
@@ -49,11 +49,6 @@ Shift+Alt + a
 
 "xrandr-brightness.sh up"
 Shift+Alt + s
-
-
-"windows-cycle.sh 'Mozilla Firefox Private Browsing' 'firefox --private-window & while ! [[ $(wmctrl -l) =~ "Mozilla Firefox Private Browsing" ]]; do sleep .1; done; sleep .5; wmctrl -Fa "Mozilla Firefox Private Browsing"'"
-Shift+Alt + e
-
 
 "qdbus py.mpris /py/mpris py.mpris.SeekToPreviousBookmark"
 Control+Shift+Mod4 + a
@@ -76,8 +71,12 @@ Control+Shift+Mod4 + z
 "clyrics.sh"
 Control+Shift+Mod4 + x
 
-"bash -c 'fj_id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 < 100 { print \$1 }"); id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 >= 100 { print \$1 }"); ids="$id $fj_id"; cwn=$(xdotool getactivewindow getwindowname); if [[ $cwn == "Tagaini Jisho" || $cwn == "" ]]; then for i in $ids; do xdotool windowminimize $i; done; else for i in $ids; do wmctrl -ia $i; done; fi; pidof tagainijisho || { tagainijisho & disown; }'"
+#"bash -c 'fj_id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 < 100 { print \$1 }"); id=$(wmctrl -lp|grep "Tagaini Jisho$"|awk "\$3 >= 100 { print \$1 }"); ids="$id $fj_id"; cwn=$(xdotool getactivewindow getwindowname); if [[ $cwn == "Tagaini Jisho" || $cwn == "" ]]; then for i in $ids; do xdotool windowminimize $i; done; else for i in $ids; do wmctrl -ia $i; done; fi; pidof tagainijisho || { tagainijisho & disown; }'"
+"if [ "$(xdotool getactivewindow getwindowname)" = 'Tagaini Jisho' ]; then xdotool getactivewindow windowminimize; else wmctrl -Fa 'Tagaini Jisho' || tagainijisho & fi"
 Shift+Mod4 + 1
+
+"xset dpms force off"
+Alt+Mod4 + l
 
 # =====
 
@@ -98,6 +97,9 @@ Shift+Alt + q
 
 #"windows-cycle.sh '\[Keep]'"
 #Shift+Alt + w
+
+"windows-cycle.sh 'Mozilla Firefox Private Browsing' 'firefox --private-window & while ! [[ $(wmctrl -l) =~ "Mozilla Firefox Private Browsing" ]]; do sleep .1; done; sleep .5; wmctrl -Fa "Mozilla Firefox Private Browsing"'"
+Shift+Alt + e
 
 "windows-cycle.sh '\[News]'"
 Shift+Alt + r
