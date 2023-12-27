@@ -4,6 +4,6 @@ eog audacity gucharmap gimp gnome-calculator gnome-system-monitor audacious gnom
 
 papirus-icon-theme dmz-cursor-theme
 
-kde-config-fcitx5 fcitx5-mozc fcitx5-frontend-gtk2
+# kde-config-fcitx5 fcitx5-mozc fcitx5-frontend-gtk2
 
 # autokey-gtk libwww-mechanize-perl pipx mpv mpv-mpris xbindkeys
