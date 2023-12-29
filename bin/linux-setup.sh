@@ -2,8 +2,8 @@
 
 # These two must not begin with '-'
 base=$(realpath -- "$0" | sed -E 's|/bin/[^/]+$||')
-addon=~/D/linux-setup-addon
-mkdir -p -- "$addon"
+#addon=~/D/linux-setup-addon
+#mkdir -p -- "$addon"
 mkdir -p ~/.local/share/applications
 
 trap exit SIGINT # The scripts launched by this script must also have this line for Ctrl+C to exit everything
