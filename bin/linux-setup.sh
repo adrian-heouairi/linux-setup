@@ -3,7 +3,7 @@
 # These two must not begin with '-'
 base=$(realpath -- "$0" | sed -E 's|/bin/[^/]+$||')
 addon=~/D/linux-setup-addon
-mkdir -p -- "$addon"/bin
+mkdir -p -- "$addon"
 mkdir -p ~/.local/share/applications
 
 trap exit SIGINT # The scripts launched by this script must also have this line for Ctrl+C to exit everything
@@ -15,7 +15,7 @@ trap exit SIGINT # The scripts launched by this script must also have this line 
 #ln -s -- "$addon"/bin ~/.local/bin || exit
 #ln -s -- "$base"/bin ~/bin || exit
 #export "PATH=$HOME/.local/bin:$HOME/bin:$PATH"
-export "PATH=$PATH:$base/bin:$addon/bin"
+export "PATH=$PATH:$base/bin"
 
 cp -f -- "$(linux-setup-get-resources-path.sh)"/dot-desktop-files-main-script/* ~/.local/share/applications/
 
@@ -43,6 +43,6 @@ fi
 
 grep .config/linux-setup-env ~/.profile &>/dev/null || echo -e '\nfor i in ~/.config/linux-setup-env/*; do . "$i"; done' >> ~/.profile
 
-linux-setup-add-env-var.sh PATH "\$PATH:$base/bin:$addon/bin" path.sh
+linux-setup-add-env-var.sh PATH "\$PATH:$base/bin" path.sh
 
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" &>/dev/null & disown; done
