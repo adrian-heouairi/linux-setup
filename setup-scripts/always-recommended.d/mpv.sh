@@ -17,5 +17,8 @@ cp -f -- "$(linux-setup-get-resources-path.sh)/dot-desktop-files/mpv-open-at-tim
 
 echo 'pidof -x mpv-auto-backup.sh || exec mpv-auto-backup.sh' > ~/.config/linux-setup/autostart/mpv-auto-backup.sh
 
+set-default-application.sh video/mp4 mpv.desktop
+set-default-application.sh video/x-matroska mpv.desktop
+
 w=$(which mpv-open.sh) && ln -s -- "$w" ~/Desktop
 w=$(which mpv-close.sh) && ln -s -- "$w" ~/Desktop || true

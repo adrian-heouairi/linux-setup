@@ -45,4 +45,6 @@ grep .config/linux-setup-env ~/.profile &>/dev/null || echo -e '\nfor i in ~/.co
 
 linux-setup-add-env-var.sh PATH "\$PATH:$base/bin" path.sh
 
+set-default-application.sh application/pdf firefox_firefox.desktop
+
 for i in ~/.config/linux-setup/autostart/*; do bash -- "$i" &>/dev/null & disown; done
