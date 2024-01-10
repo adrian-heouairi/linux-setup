@@ -5,7 +5,7 @@ path=$1
 fullpath=$(realpath -- "$path")
 
 if ! [ -e "$fullpath" ]; then
-    notify-send ".tex file doesn't exist"
+    notify-send ".tex file '$fullpath' doesn't exist"
     exit 1
 fi
 

@@ -22,7 +22,7 @@ Shift+Mod4 + c
 "if [ "$(xdotool getactivewindow getwindowname)" = 'User 1 - Anki' ]; then xdotool getactivewindow windowminimize; else wmctrl -Fa 'User 1 - Anki' || anki & fi"
 Shift+Mod4 + 2
 
-"wmctrl -Fa 'System Monitor' || gnome-system-monitor"
+"wmctrl -Fa 'System Monitor' || gnome-system-monitor --show-processes-tab"
 Control+Shift + Escape
 
 "killall -9 plasmashell; sleep .5; plasmashell --replace"
