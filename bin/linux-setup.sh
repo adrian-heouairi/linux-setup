@@ -4,7 +4,7 @@
 base=$(realpath -- "$0" | sed -E 's|/bin/[^/]+$||')
 #addon=~/D/linux-setup-addon
 #mkdir -p -- "$addon"
-mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/applications ~/.config/linux-setup
 
 trap exit SIGINT # The scripts launched by this script must also have this line for Ctrl+C to exit everything
 
