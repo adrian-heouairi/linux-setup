@@ -37,11 +37,11 @@ Control+Alt+Mod4 + g
 "sed -Ez 's|.*\[Containments]\[1]\[Wallpaper]\[org\.kde\.image]\[General]\nImage=(file://)?([^\n]+).*|\2|' ~/.config/plasma-org.kde.plasma.desktop-appletsrc | sed 's|^|file://|' | xsel -b; notify-send -i edit-copy 'Copied wallpaper URL to clipboard' "$(xsel -o -b)""
 Alt+Mod4 + d
 
-"pactl set-sink-volume @DEFAULT_SINK@ -5%"
-Alt+Mod4 + a
+"pactl set-sink-volume @DEFAULT_SINK@ -5%; qdbus org.kde.plasmashell /org/kde/osdService volumeChanged $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -n 1) 400"
+Mod4 + a
 
-"pactl set-sink-volume @DEFAULT_SINK@ +5%"
-Alt+Mod4 + s
+"pactl set-sink-volume @DEFAULT_SINK@ +5%; qdbus org.kde.plasmashell /org/kde/osdService volumeChanged $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -n 1) 400"
+Mod4 + s
 
 "xrandr-brightness.sh down"
 Shift+Alt + a
@@ -76,6 +76,12 @@ Shift+Mod4 + 1
 
 "xset dpms force off"
 Alt+Mod4 + l
+
+"xdotool click 6"
+KP_Divide
+
+"xdotool click 7"
+KP_Multiply
 
 # =====
 
