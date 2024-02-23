@@ -19,8 +19,8 @@ killall -9 kglobalaccel5
 put_kde_keyboard_shortcut kmix mute Alt+X 'Volume Mute'
 put_kde_keyboard_shortcut plasmashell 'toggle do not disturb' Alt+C
 put_kde_keyboard_shortcut mediacontrol playpausemedia Meta+Z 'Media Play'
-#put_kde_keyboard_shortcut kmix decrease_volume Meta+A 'Volume Down'
-#put_kde_keyboard_shortcut kmix increase_volume Meta+S 'Volume Up'
+put_kde_keyboard_shortcut kmix decrease_volume Meta+Alt+A 'Volume Down'
+put_kde_keyboard_shortcut kmix increase_volume Meta+Alt+S 'Volume Up'
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 4' Meta+Q Meta+4
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 5' Meta+W Meta+5
 put_kde_keyboard_shortcut plasmashell 'activate task manager entry 6' Meta+E Meta+6
