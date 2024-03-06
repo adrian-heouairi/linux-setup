@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script is idempotent
+
 {
 sudo sed -Ezi 's/#alsftp-start.*#alsftp-end\n?//' /etc/fstab
 
@@ -66,7 +68,7 @@ for line in $conf; do
     sudo mount --bind -- "$dir_to_share" "$bind_mount_dir"
     fstab_lines+="$dir_to_share $bind_mount_dir none bind,nofail 0 0"$'\n'
 
-    message_at_end+="Connect with command 'sftp sftp://$username@$public_ip:$port' or mount with command 'sshfs $username@$public_ip:/shared <mount-dir> -p $port -o reconnect' with password $password"$'\n'
+    message_at_end+="Connect with command 'sftp sftp://$username@$public_ip:$port' and password '$password' or mount with command 'printf %s '$password' | sshfs $username@$public_ip:/shared <mount-dir> -p $port -o reconnect,password_stdin,ServerAliveInterval=5'"$'\n'
 done
 
 if [ "$fstab_lines" ]; then

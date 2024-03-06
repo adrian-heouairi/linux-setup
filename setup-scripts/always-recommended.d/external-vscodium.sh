@@ -4,9 +4,9 @@ linux-setup-install-deb.sh codium '' https://github.com/VSCodium/vscodium codium
 
 linux-setup-add-env-var.sh GTK_USE_PORTAL 1 vscodium.sh
 
-set-default-application.sh text/plain codium.desktop
-set-default-application.sh text/x-python codium.desktop
-set-default-application.sh application/x-shellscript codium.desktop
+#set-default-application.sh text/plain codium.desktop
+#set-default-application.sh text/x-python codium.desktop
+#set-default-application.sh application/x-shellscript codium.desktop
 
 mkdir -p ~/.config/VSCodium/User/
 

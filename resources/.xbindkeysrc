@@ -1,5 +1,8 @@
-# Put modifiers in this order: Control+Shift+Alt+Mod4+Mod5
+# Standard order of modifiers in xbindkeys: Control+Shift+Alt+Mod4+Mod5
 # The order of modifiers in KDE programs is Meta+Ctrl+Alt+Shift (Alt Gr cannot be used as a modifier)
+
+"printf %s "$(date +"%Y-%m-%d %H:%M:%S")" | xsel -b; notify-send 'Copied current date to clipboard'"
+Shift+Mod4 + d
 
 "text-editor -- "$(linux-setup-get-resources-path.sh)"/.xbindkeysrc"
 Mod4 + b
