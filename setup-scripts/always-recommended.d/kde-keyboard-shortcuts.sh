@@ -30,4 +30,7 @@ put_kde_keyboard_shortcut plasmashell 'activate task manager entry 9' Meta+Shift
 put_kde_keyboard_shortcut kwin 'Window Close' Meta+X Alt+F4
 put_kde_keyboard_shortcut org.kde.krunner.desktop _launch Alt+Space Alt+F2
 
+kde-add-keyboard-shortcut.sh 'xrandr-brightness.sh down' Meta+Shift+A
+kde-add-keyboard-shortcut.sh 'xrandr-brightness.sh up' Meta+Shift+S
+
 kglobalaccel5 &>/dev/null & disown
